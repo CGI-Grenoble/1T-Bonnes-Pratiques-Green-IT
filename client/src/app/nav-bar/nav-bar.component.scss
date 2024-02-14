@@ -1,0 +1,43 @@
+#language {
+    background-color: transparent;
+}
+
+#selectedLanguage {
+    color: white;
+  }
+
+
+/*   :host::ng-deep .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item,
+  body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group {
+      background: transparent;
+      color: white;
+  } */
+
+  .mypanel1.ui-dropdown-panel {
+    background-color: blue
+}
+
+.mypanel2.ui-dropdown-panel {
+    background-color: blue
+}
+
+:host ::ng-deep .p-dropdown { 
+    width: 140px; 
+    color: white;
+} 
+
+:host ::ng-deep .p-dropdown-label { 
+    color: white;
+}
+  
+:host ::ng-deep .p-dropdown-items { 
+    background-color: transparent; 
+    color: white;
+} 
+  
+:host ::ng-deep .p-dropdown-clearable { 
+    color: white;
+    background-color: lightgreen; 
+    font-weight: bold; 
+}
+
