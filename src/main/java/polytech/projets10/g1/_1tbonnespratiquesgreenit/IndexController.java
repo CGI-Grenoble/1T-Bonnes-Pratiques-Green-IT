@@ -14,15 +14,15 @@ import java.util.HashMap;
 @RestController
 public class IndexController {
 
-    @GetMapping(path = "/")
-    public HashMap index() {
-        // get a successful user login
-        OAuth2User user = ((OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return new HashMap() {{
-            put("hello", user.getAttribute("name"));
-            put("your email is", user.getAttribute("email"));
-        }};
-    }
+//    @GetMapping(path = "/")
+//    public HashMap index() {
+//        // get a successful user login
+//        OAuth2User user = ((OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//        return new HashMap() {{
+//            put("hello", user.getAttribute("name"));
+//            put("your email is", user.getAttribute("email"));
+//        }};
+//    }
 
 
     @GetMapping(path = "/unauthenticated")
