@@ -1,5 +1,9 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +18,7 @@ public class IndexController {
     public HashMap index() {
         // get a successful user login
         OAuth2User user = ((OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return new HashMap(){{
+        return new HashMap() {{
             put("hello", user.getAttribute("name"));
             put("your email is", user.getAttribute("email"));
         }};
@@ -23,7 +27,7 @@ public class IndexController {
 
     @GetMapping(path = "/unauthenticated")
     public HashMap unauthenticatedRequests() {
-        return new HashMap(){{
+        return new HashMap() {{
             put("this is ", "unauthenticated endpoint");
         }};
     }
