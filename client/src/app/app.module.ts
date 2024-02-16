@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+import { OrgComponent } from './org/org.component';
+import { CardModule } from 'primeng/card';
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -30,6 +32,7 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
   declarations: [
     AppComponent,
     NavBarComponent,
+    OrgComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,9 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    MenubarModule
+    MenubarModule,
+    CardModule,
+
     /* MatSlideToggleModule,
     MatButtonToggleModule,
     MatToolbarModule,

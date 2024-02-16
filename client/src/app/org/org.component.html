@@ -1,0 +1,37 @@
+<div [style]="{'display': 'flex', 'background-color':'rgb(52, 196, 230)'}">
+    <div id="gauche"> 
+        <p-button [style]="{'margin-top':'0.5rem'}" icon ="pi pi-sitemap" label ="Mes bonnes pratiques" [link]="true" iconPos="right"></p-button>
+        
+    </div>
+    <div [style]="{'background-color': 'white','text-align': 'center'}">
+        <h2>Mes Organisations</h2>
+        <div id="cards" class=" flex ">
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '3rem'}">    
+                <p-card header="Michelin" subheader="XX membres" [style]="{ width: '300px' }">
+                    <p>Vous êtes membre de cette organisation</p>
+                    <ng-template pTemplate="footer" >
+                        <p-button icon ="pi pi-eye" [link]="true"></p-button>
+                    </ng-template>
+                </p-card>
+                
+            </div>
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '3rem'}">    
+                <p-card header="Shneider" subheader="XX membres" [style]="{ width: '300px'}">
+                    <p>Vous êtes administarteur de cette organisation</p>
+                    <ng-template pTemplate="footer" >
+                        <p-button icon ="pi pi-eye" [link]="true"></p-button>
+                        <p-button icon ="pi pi-pencil" [link]="true" [style]="{ 'margin-left': '.5em' }"></p-button> 
+                    </ng-template>
+                </p-card>
+            </div>
+        </div>
+        <i class="pi pi-search"> Rechercher une organisation</i>
+        <p-inputGroup [style]="{'margin-left': '225px'}">
+            <p-inputGroup [style]="{'margin-top':'0.5rem', 'width': '350px'}">
+                <input [style]="{'text-align' : 'center'}" type="text" pInputText placeholder="Nom, mot-clef ..." />
+                <button [style]="{'text-align' : 'center'}"  type="button" pButton icon="pi pi-search"></button>
+            </p-inputGroup>
+        </p-inputGroup>
+        <p-button [style]="{'margin-top':'0.5rem'}" icon ="pi pi-eye" label ="Créer une organisation" [link]="true"></p-button>
+    </div>
+</div>
