@@ -8,6 +8,12 @@ public enum WSEvent {
     CHOOSE_PLAYER,
     DISCARD_CARD,
     POLL_VOTE,
+    START_POLL,
+    END_POLL,
+    END_GAME,
+    ASK_PAUSE,
+    CHANGE_TURN,
+
 
 
 

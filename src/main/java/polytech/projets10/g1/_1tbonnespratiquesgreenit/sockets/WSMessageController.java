@@ -10,8 +10,11 @@ public class WSMessageController {
 
     @MessageMapping("/message/{roomId}")
     @SendTo("/game/{roomId}/messages")
-    public WSMessage greeting(@DestinationVariable String roomId, WSMessage message) {
-        return message;
+    public String greeting(@DestinationVariable String roomId, WSMessage message) {
+        //processMessage(message)
+
+        //send new event to everyone in the room
+        return "bjr";
     }
 
 }
