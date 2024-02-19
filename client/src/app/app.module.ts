@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,15 +16,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+import {provideHttpClient} from "@angular/common/http";
+import {AuthConfig, OAuthService, provideOAuthClient} from "angular-oauth2-oidc";
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarHarness} from '@angular/material/toolbar/testing'; 
+import {MatToolbarHarness} from '@angular/material/toolbar/testing';
  */
+
+export const authCodeFlowConfig: AuthConfig = {
+  issuer: 'http://localhost:8080/realms/1t-bonnes-pratiques',
+  tokenEndpoint: 'http://localhost:8080/realms/1t-bonnes-pratiques/protocol/openid-connect/token',
+  redirectUri: window.location.origin,
+  clientId: 'green-it-app',
+  responseType: 'code',
+  scope: 'openid profile'
+}
+
+function initializeOAuth(oauthService: OAuthService): Promise<void> {
+  return new Promise((resolve) => {
+    oauthService.configure(authCodeFlowConfig)
+    oauthService.setupAutomaticSilentRefresh()
+    oauthService.loadDiscoveryDocumentAndLogin()
+      .then(() => resolve())
+  })
+}
 
 @NgModule({
   declarations: [
@@ -55,7 +75,22 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     MatIconModule,
     MatToolbarHarness */
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(),
+    provideOAuthClient(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (oauthService: OAuthService) => {
+        return () => {
+          initializeOAuth(oauthService)
+        }
+      },
+      multi: true,
+      deps: [
+        OAuthService
+      ]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 
