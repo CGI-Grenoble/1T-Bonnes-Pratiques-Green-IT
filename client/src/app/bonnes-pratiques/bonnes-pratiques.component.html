@@ -1,0 +1,12 @@
+<app-nav-bar>  </app-nav-bar>
+<div [style]="{'display': 'flex', 'background-color':'rgb(52, 196, 230)'}">
+    <!-- rgb(38, 157, 185) -->
+    <div [style]="{'align-items': 'center', 'display': 'grid', 'width': '350px', 'text-align': 'center'}"> 
+       <app-bonnes-pratiques-bouton></app-bonnes-pratiques-bouton>
+    </div>
+
+    <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1em', 'margin-bottom': '1.05em', 'display': 'grid', 'align-items': 'center'}">
+        <h2 [style]= "{'margin-top': '0.5rem'}">Mes Bonnes Pratiques</h2>
+        <app-bonnes-pratiques-accueil></app-bonnes-pratiques-accueil>
+    </div>
+</div>

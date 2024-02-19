@@ -18,7 +18,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { OrgComponent } from './org/org.component';
 import { CardModule } from 'primeng/card';
-import { DetailOrgComponent } from './detail-org/detail-org.component';
+import { OrgDetailComponent } from './org-detail/org-detail.component';
+import { BonnesPratiquesComponent } from './bonnes-pratiques/bonnes-pratiques.component';
+import { BonnesPratiquesBoutonComponent } from './bonnes-pratiques-bouton/bonnes-pratiques-bouton.component';
+import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonnes-pratiques-accueil.component';
+import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
+import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -34,7 +39,12 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     AppComponent,
     NavBarComponent,
     OrgComponent,
-    DetailOrgComponent,
+    OrgDetailComponent,
+    BonnesPratiquesComponent,
+    BonnesPratiquesBoutonComponent,
+    BonnesPratiquesAccueilComponent,
+    OrgBoutonComponent,
+    OrgAccueilComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,13 +2,13 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-detail-org',
-  templateUrl: './detail-org.component.html',
-  styleUrl: './detail-org.component.scss'
+  selector: 'app-org-detail',
+  templateUrl: './org-detail.component.html',
+  styleUrl: './org-detail.component.scss'
 })
 
 
-export class DetailOrgComponent {
+export class OrgDetailComponent {
   
   constructor(private router: Router) { }
 
