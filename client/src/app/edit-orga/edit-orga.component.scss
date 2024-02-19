@@ -1,0 +1,66 @@
+.creation-general{
+    margin :2em;
+    height: 100%;
+    background-color: aqua  ;
+    width: 75%;
+    border-radius: 6px;
+    border: 5px;
+
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 2em;
+}
+
+.nom-form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 75%;
+  margin: 1em;
+}
+
+.col1 {
+  float: left;
+  width: 50%;
+  background-color: aquamarine;
+  height: 100%;
+}
+
+.col2 {
+  float: left;
+  width: 50%;
+  background-color: beige;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radios {
+  margin: 1em;
+  margin-left: 2em;;
+  display: flex;
+  justify-content: left;
+  text-align: center;
+
+}
+
+.creation {
+  margin: 1em;
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.description{
+    margin: 2em;    
+}
+
+.colonnes{
+    display:flex;
+}

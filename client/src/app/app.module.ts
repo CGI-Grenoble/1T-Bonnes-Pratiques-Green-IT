@@ -16,6 +16,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+import { CardModule } from 'primeng/card';
+import { EditOrgaComponent } from './edit-orga/edit-orga.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { ToastComponent } from './toast/toast.component';
+import { RadioComponent } from './radio/radio.component';
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -30,6 +36,9 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
   declarations: [
     AppComponent,
     NavBarComponent,
+    EditOrgaComponent,
+    ToastComponent,
+    RadioComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,10 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    MenubarModule
+    MenubarModule,
+    ToastModule,
+    FormsModule,
+    CardModule
     /* MatSlideToggleModule,
     MatButtonToggleModule,
     MatToolbarModule,
