@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { OrgComponent } from './org/org.component';
 import { CardModule } from 'primeng/card';
+import { DetailOrgComponent } from './detail-org/detail-org.component';
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -33,6 +34,7 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     AppComponent,
     NavBarComponent,
     OrgComponent,
+    DetailOrgComponent,
   ],
   imports: [
     BrowserModule,
