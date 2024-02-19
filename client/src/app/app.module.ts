@@ -16,12 +16,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+<<<<<<< HEAD
 import { CardModule } from 'primeng/card';
 import { EditOrgaComponent } from './edit-orga/edit-orga.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ToastComponent } from './toast/toast.component';
 import { RadioComponent } from './radio/radio.component';
+=======
+import { OrgComponent } from './org/org.component';
+import { CardModule } from 'primeng/card';
+import { OrgDetailComponent } from './org-detail/org-detail.component';
+import { BonnesPratiquesComponent } from './bonnes-pratiques/bonnes-pratiques.component';
+import { BonnesPratiquesBoutonComponent } from './bonnes-pratiques-bouton/bonnes-pratiques-bouton.component';
+import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonnes-pratiques-accueil.component';
+import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
+import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
+>>>>>>> origin/Nav-bar
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -36,9 +47,19 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
   declarations: [
     AppComponent,
     NavBarComponent,
+<<<<<<< HEAD
     EditOrgaComponent,
     ToastComponent,
     RadioComponent,
+=======
+    OrgComponent,
+    OrgDetailComponent,
+    BonnesPratiquesComponent,
+    BonnesPratiquesBoutonComponent,
+    BonnesPratiquesAccueilComponent,
+    OrgBoutonComponent,
+    OrgAccueilComponent,
+>>>>>>> origin/Nav-bar
   ],
   imports: [
     BrowserModule,
@@ -56,9 +77,14 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     FormsModule,
     ReactiveFormsModule,
     MenubarModule,
+<<<<<<< HEAD
     ToastModule,
     FormsModule,
     CardModule
+=======
+    CardModule,
+
+>>>>>>> origin/Nav-bar
     /* MatSlideToggleModule,
     MatButtonToggleModule,
     MatToolbarModule,

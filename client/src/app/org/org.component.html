@@ -1,0 +1,13 @@
+<app-nav-bar></app-nav-bar>
+<div [style]="{'display': 'flex', 'background-color':'rgb(52, 196, 230)', 'max-height': '486px'}">
+    <!-- rgb(38, 157, 185) -->
+    <div [style]="{'align-items': 'center', 'display': 'grid', 'width': '350px'}"> 
+        <app-org-bouton></app-org-bouton>   
+    </div>
+
+    <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1rem', 'margin-bottom': '1rem', 'display': 'grid', 'align-items': 'center' ,'overflow-y': 'auto'}">
+        <h2 [style]= "{'margin-top': '0.5rem'}">Mes Organisations</h2>
+        <!-- <app-org-accueil> </app-org-accueil> -->
+        <app-org-detail></app-org-detail>
+    </div>
+</div>
