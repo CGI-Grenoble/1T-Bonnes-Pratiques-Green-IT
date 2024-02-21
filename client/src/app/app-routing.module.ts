@@ -44,6 +44,9 @@ const routes: Routes = [
         // component : EditOrgComponent,}
       ]
     },
+    { path: 'org/create',
+      component: OrgComponent
+    },
     { path: '',
     component: BonnesPratiquesComponent,
     children : [
