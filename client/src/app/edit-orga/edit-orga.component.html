@@ -30,9 +30,9 @@
   </div>
 </div>
 
-  <app-toast class="creation"></app-toast>
+  <app-toast [nameData]="name" [descriptionData]="description" [privatisationData]="visibilite" class="creation"></app-toast>
 
-  <p> {{publ}} </p>
+  <p-button [style]="{'margin':'1em'}"  label ="Retour" [link]="true" ></p-button>   
 </div>
 
   

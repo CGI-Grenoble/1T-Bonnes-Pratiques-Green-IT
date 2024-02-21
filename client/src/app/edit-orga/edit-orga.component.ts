@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, input } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ToastComponent } from '../toast/toast.component';
@@ -16,9 +16,9 @@ export class EditOrgaComponent {
   description!: string;
   visibilite!: string;
   nature =  new FormControl('');
-  public publ!: any;
+ 
 
   childData($event :any){
-   this.publ = $event }
+   this.visibilite = $event }
 
   }

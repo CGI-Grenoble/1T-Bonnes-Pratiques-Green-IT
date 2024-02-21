@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -8,12 +8,19 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class ToastComponent {
+  @Input ('nameData') public name! : string;
+  @Input ('descriptionData') public description! : string;
+  @Input ('privatisationData') public visibilite! : string;
+
   constructor(private messageService: MessageService) {}
 
-  label! : string;
-  visibilite! : string;
+  submit() {
+   console.log("nom : ", this.name);
+   console.log("description : ", this.description);
+   console.log("prive : ", this.visibilite);
 
-  show() {
+
+
     this.messageService.add({
       severity: 'info',
       summary: 'Success',
