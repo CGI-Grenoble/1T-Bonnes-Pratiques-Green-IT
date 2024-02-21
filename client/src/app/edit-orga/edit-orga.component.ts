@@ -16,11 +16,9 @@ export class EditOrgaComponent {
   description!: string;
   visibilite!: string;
   nature =  new FormControl('');
+  public publ!: any;
 
-
-  onClick() {
-    
-    
-  }
+  childData($event :any){
+   this.publ = $event }
 
   }
