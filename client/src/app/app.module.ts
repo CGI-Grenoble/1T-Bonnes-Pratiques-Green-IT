@@ -16,14 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
-<<<<<<< HEAD
-import { CardModule } from 'primeng/card';
-import { EditOrgaComponent } from './edit-orga/edit-orga.component';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
-import { ToastComponent } from './toast/toast.component';
 import { RadioComponent } from './radio/radio.component';
-=======
 import { OrgComponent } from './org/org.component';
 import { CardModule } from 'primeng/card';
 import { OrgDetailComponent } from './org-detail/org-detail.component';
@@ -32,7 +26,10 @@ import { BonnesPratiquesBoutonComponent } from './bonnes-pratiques-bouton/bonnes
 import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonnes-pratiques-accueil.component';
 import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
 import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
->>>>>>> origin/Nav-bar
+import { CommonModule } from '@angular/common';
+import { EditOrgaComponent } from './edit-orga/edit-orga.component';
+import { ToastComponent } from './toast/toast.component';
+
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
@@ -47,11 +44,6 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
   declarations: [
     AppComponent,
     NavBarComponent,
-<<<<<<< HEAD
-    EditOrgaComponent,
-    ToastComponent,
-    RadioComponent,
-=======
     OrgComponent,
     OrgDetailComponent,
     BonnesPratiquesComponent,
@@ -59,7 +51,9 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     BonnesPratiquesAccueilComponent,
     OrgBoutonComponent,
     OrgAccueilComponent,
->>>>>>> origin/Nav-bar
+    RadioComponent,
+    EditOrgaComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -77,14 +71,13 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     FormsModule,
     ReactiveFormsModule,
     MenubarModule,
-<<<<<<< HEAD
+
     ToastModule,
     FormsModule,
-    CardModule
-=======
     CardModule,
+    CommonModule,
+    ReactiveFormsModule
 
->>>>>>> origin/Nav-bar
     /* MatSlideToggleModule,
     MatButtonToggleModule,
     MatToolbarModule,
@@ -94,8 +87,6 @@ import {MatToolbarHarness} from '@angular/material/toolbar/testing';
     MatToolbarHarness */
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-
-export class AppModule { }
+export class AppModule {}

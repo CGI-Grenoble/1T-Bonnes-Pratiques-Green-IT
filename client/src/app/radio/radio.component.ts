@@ -7,7 +7,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './radio.component.scss',
 })
 export class RadioComponent {
-  ingredient!: string;
 
   formulaire: FormGroup;
 
