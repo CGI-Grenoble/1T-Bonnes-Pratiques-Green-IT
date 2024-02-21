@@ -4,6 +4,10 @@ import { OrgComponent } from './org/org.component';
 import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
 import { BonnesPratiquesComponent } from './bonnes-pratiques/bonnes-pratiques.component';
 import { OrgDetailComponent } from './org-detail/org-detail.component'; // Import the missing OrgDetailComponent
+import {AdminComponent} from "./admin/admin.component";
+import {AuthGuard} from "./auth.guard";
+import {UserComponent} from "./user/user.component";
+import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 
 const routes: Routes = [
     {path: 'org',
