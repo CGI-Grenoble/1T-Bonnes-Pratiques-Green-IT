@@ -1,34 +1,48 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.security;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.security.CustomJwt;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.security.CustomJwtConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 class SecurityConfig {
+
+    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+    private String jwkSetUri;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .sessionManagement((session) -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                )
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/unauthenticated", "/oauth2/**", "/login/**", "/h2-console/**").permitAll()
-                        .anyRequest().fullyAuthenticated()
-                )
-                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))
-                .logout((logout) -> logout.logoutSuccessUrl("http://localhost:8080/realms/1t-bonnes-pratiques/protocol/openid-connect/logout?post_logout_redirect_uri=http://localhost:8081/&client_id=green-it-app"));
-        http.oauth2Client(Customizer.withDefaults());
-        http.oauth2Login(c -> c.tokenEndpoint((tokenEndpoint) -> c.userInfoEndpoint(Customizer.withDefaults())));
+        http.cors(Customizer.withDefaults())
+            .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer((oauth2) -> oauth2.jwt(
+                    jwt -> jwt.jwtAuthenticationConverter(customJwtConverter())
+            ));
         return http.build();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).jwsAlgorithm(SignatureAlgorithm.RS256).build();
+    }
+
+    @Bean
+    public Converter<Jwt, CustomJwt> customJwtConverter() {
+        return new CustomJwtConverter();
     }
 }
