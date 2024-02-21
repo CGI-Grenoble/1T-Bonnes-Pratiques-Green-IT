@@ -16,42 +16,45 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
-import {provideHttpClient} from "@angular/common/http";
-import {AuthConfig, OAuthService, provideOAuthClient} from "angular-oauth2-oidc";
-/* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarHarness} from '@angular/material/toolbar/testing';
- */
+import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient} from "@angular/common/http";
+import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { environment } from '../environments/environment';
 
-export const authCodeFlowConfig: AuthConfig = {
-  issuer: 'http://localhost:8080/realms/1t-bonnes-pratiques',
-  tokenEndpoint: 'http://localhost:8080/realms/1t-bonnes-pratiques/protocol/openid-connect/token',
-  redirectUri: window.location.origin,
-  clientId: 'green-it-app',
-  responseType: 'code',
-  scope: 'openid profile'
-}
-
-function initializeOAuth(oauthService: OAuthService): Promise<void> {
-  return new Promise((resolve) => {
-    oauthService.configure(authCodeFlowConfig)
-    oauthService.setupAutomaticSilentRefresh()
-    oauthService.loadDiscoveryDocumentAndLogin()
-      .then(() => resolve())
-  })
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: environment.keycloak.url,
+        realm: environment.keycloak.realm,
+        clientId: environment.keycloak.clientId,
+      },
+      enableBearerInterceptor: true,
+      loadUserProfileAtStartUp: true,
+      initOptions: {
+        onLoad: 'login-required',
+        checkLoginIframe: true,
+      },
+      bearerPrefix: 'Bearer', // prefix "bearer <TOKEN> on each request
+      bearerExcludedUrls: [],
+      shouldAddToken: (request) => {
+        return true
+      }
+    });
 }
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
+    AdminComponent,
+    UserComponent,
+    AccessDeniedComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -66,29 +69,21 @@ function initializeOAuth(oauthService: OAuthService): Promise<void> {
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    MenubarModule
-    /* MatSlideToggleModule,
-    MatButtonToggleModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarHarness */
+    MenubarModule,
+    KeycloakAngularModule
   ],
   providers: [
     provideHttpClient(),
-    provideOAuthClient(),
     {
       provide: APP_INITIALIZER,
-      useFactory: (oauthService: OAuthService) => {
-        return () => {
-          initializeOAuth(oauthService)
-        }
-      },
+      useFactory: initializeKeycloak,
       multi: true,
-      deps: [
-        OAuthService
-      ]
+      deps: [KeycloakService]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

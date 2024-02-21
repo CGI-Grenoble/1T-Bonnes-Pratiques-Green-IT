@@ -1,37 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AdminComponent} from "./admin/admin.component";
+import {AuthGuard} from "./auth.guard";
+import {UserComponent} from "./user/user.component";
+import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 
 const routes: Routes = [
-    // {path: 'org',
-    // component: OrgComponent, // this is the component with the <router-outlet> in the template
-    // children: [
-    //   {
-    //     path: ':id', // child route path
-    //     component: DetailOrgAComponent, // child route component that the router renders
-    //     children: [
-    //       {path: 'edit',
-    //       component : EditOrgComponent,}
-
-    //     ]
-    //   },
-    //   {
-    //     path: 'create',
-    //     component: CreateOrgBComponent, // another child route component that the router renders
-    //   },
-    // ]},
-    // { path: 'profile',
-    // component: ProfileComponent,
-    // },
-    // { path: 'bonnesPratiques',
-    // component: BonnesPratiquesComponent,
-    // children : [
-    //   { path: ':id',
-    //     component: DetailBonnesPratiquesComponent,
-    //   }
-    // ]
-    // },
-  
-];
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['administrator'] },
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['user'] },
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
