@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class OrgComponent {
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
   onContinue() {
     this.router.navigateByUrl('org');
 }

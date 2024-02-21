@@ -10,10 +10,10 @@ import { RouterModule, Router } from '@angular/router';
 
 export class OrgDetailComponent {
   
-  constructor(private router: Router) { }
+  /* constructor(private router: Router) { }
 
   onContinue() {
     this.router.navigateByUrl('org');
-  }
+  } */
 
 }
