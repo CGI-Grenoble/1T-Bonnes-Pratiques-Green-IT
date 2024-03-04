@@ -12,6 +12,11 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(
+        origins = "http://localhost:4200",
+        allowedHeaders = "*",
+        methods = { RequestMethod.GET }
+)
 @RequestMapping("/api/games")
 public class GameController {
 
