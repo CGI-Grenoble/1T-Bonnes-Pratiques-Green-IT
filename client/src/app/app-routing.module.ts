@@ -12,6 +12,7 @@ import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 const routes: Routes = [
     {path: 'org',
     component: OrgComponent, // this is the component with the <router-outlet> in the template
+    data: { roles: ['user'] }
     /* children: [
       {
         // path: '', // child route path
@@ -42,7 +43,8 @@ const routes: Routes = [
       children: [
         // {path: 'edit',
         // component : EditOrgComponent,}
-      ]
+      ],
+      data: { roles: ['user'] },
     },
     { path: '',
     component: BonnesPratiquesComponent,
@@ -50,7 +52,8 @@ const routes: Routes = [
       // { path: ':id',
       //   component: DetailBonnesPratiquesComponent,
       // }
-    ]
+    ],
+    data: { roles: ['user'] }
     },
   
 ];

@@ -39,6 +39,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { environment } from '../environments/environment';
+import { CardComponent } from './card/card.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -76,6 +77,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AdminComponent,
     UserComponent,
     AccessDeniedComponent,
+    CardComponent,
   ],
   imports: [
     HttpClientModule,

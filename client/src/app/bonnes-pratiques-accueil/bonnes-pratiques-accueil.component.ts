@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './bonnes-pratiques-accueil.component.scss'
 })
 export class BonnesPratiquesAccueilComponent {
-
+  
 }
