@@ -14,13 +14,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
-
-  async logout() {
-    await this.keycloak.logout(window.location.origin)
-  }
-
-  async call() {
-    const token = await this.keycloak.getToken()
-    this.httpClient.get<{ message: string }>('http://localhost:8081/hello', {}).subscribe(res => console.log(res))
-  }
 }
