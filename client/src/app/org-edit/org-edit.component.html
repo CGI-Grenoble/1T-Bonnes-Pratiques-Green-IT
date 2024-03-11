@@ -28,7 +28,7 @@
 
       <div class="boutons">
         <p-button
-          [style]="{ margin: '5vh' }"
+          [style]="{ color:'#000000', margin: '5vh' }"
           label="Retour"
           [link]="true"
           routerLink=".."
@@ -51,7 +51,11 @@
 
       <app-members class="liste"> </app-members>
 
-      <p-button label="Ajouter des membres"> </p-button>
+      <p-button
+        [style]="{ background: '#FF978A', border: 'none' }"
+        label="Ajouter des membres"
+      >
+      </p-button>
     </div>
   </div>
 </div>
