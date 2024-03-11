@@ -16,6 +16,7 @@ export class EditOrgaComponent {
   description!: string;
   visibilite!: string;
   nature =  new FormControl('');
+  bouton_label : string = "Créer"
  
 
   childData($event :any){

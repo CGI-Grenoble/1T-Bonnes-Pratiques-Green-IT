@@ -1,6 +1,8 @@
 {
   "id": "09bf3500-36ee-4dee-ad91-133344384a6c",
   "realm": "1t-bonnes-pratiques",
+  "displayName": "",
+  "displayNameHtml": "",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -46,18 +48,9 @@
   "roles": {
     "realm": [
       {
-        "id": "d6da3ad9-73a3-4a3c-8e3d-0d49791489a7",
-        "name": "manager",
-        "description": "",
-        "composite": false,
-        "clientRole": false,
-        "containerId": "09bf3500-36ee-4dee-ad91-133344384a6c",
-        "attributes": {}
-      },
-      {
         "id": "f1154886-7b51-47d8-86fb-91ef41bce4c7",
         "name": "user",
-        "description": "",
+        "description": "${role_default-roles}",
         "composite": false,
         "clientRole": false,
         "containerId": "09bf3500-36ee-4dee-ad91-133344384a6c",
@@ -89,7 +82,8 @@
         "composites": {
           "realm": [
             "offline_access",
-            "uma_authorization"
+            "uma_authorization",
+            "user"
           ],
           "client": {
             "account": [
@@ -98,6 +92,15 @@
             ]
           }
         },
+        "clientRole": false,
+        "containerId": "09bf3500-36ee-4dee-ad91-133344384a6c",
+        "attributes": {}
+      },
+      {
+        "id": "dacd3a1f-a6ad-4055-a2d2-31505728c26b",
+        "name": "org-admin",
+        "description": "",
+        "composite": false,
         "clientRole": false,
         "containerId": "09bf3500-36ee-4dee-ad91-133344384a6c",
         "attributes": {}
@@ -685,19 +688,20 @@
       "clientId": "green-it-app",
       "name": "green-it-app",
       "description": "",
-      "rootUrl": "",
+      "rootUrl": "http://localhost:4200",
       "adminUrl": "",
-      "baseUrl": "",
+      "baseUrl": "http://localhost:4200",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
       "redirectUris": [
-        "",
-        "http://localhost:8081/*"
+        "http://localhost:8081/*",
+        "http://localhost:4200/*"
       ],
-      "webOrigins": [],
+      "webOrigins": [
+        "http://localhost:4200"
+      ],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,
@@ -705,12 +709,12 @@
       "implicitFlowEnabled": false,
       "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
-      "publicClient": false,
+      "publicClient": true,
       "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
         "oidc.ciba.grant.enabled": "false",
-        "client.secret.creation.time": "1707309636",
+        "client.secret.creation.time": "1707828638",
         "backchannel.logout.session.required": "true",
         "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
@@ -1461,12 +1465,12 @@
           "allowed-protocol-mapper-types": [
             "oidc-address-mapper",
             "oidc-full-name-mapper",
-            "saml-role-list-mapper",
-            "oidc-usermodel-property-mapper",
+            "saml-user-property-mapper",
             "oidc-usermodel-attribute-mapper",
             "saml-user-attribute-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "saml-user-property-mapper"
+            "saml-role-list-mapper",
+            "oidc-usermodel-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper"
           ]
         }
       },
@@ -1479,13 +1483,13 @@
         "config": {
           "allowed-protocol-mapper-types": [
             "oidc-sha256-pairwise-sub-mapper",
-            "oidc-usermodel-property-mapper",
             "oidc-usermodel-attribute-mapper",
-            "saml-user-property-mapper",
-            "saml-role-list-mapper",
             "oidc-full-name-mapper",
             "oidc-address-mapper",
-            "saml-user-attribute-mapper"
+            "oidc-usermodel-property-mapper",
+            "saml-user-attribute-mapper",
+            "saml-user-property-mapper",
+            "saml-role-list-mapper"
           ]
         }
       },
@@ -1575,8 +1579,12 @@
       }
     ]
   },
-  "internationalizationEnabled": false,
-  "supportedLocales": [],
+  "internationalizationEnabled": true,
+  "supportedLocales": [
+    "en",
+    "fr"
+  ],
+  "defaultLocale": "fr",
   "authenticationFlows": [
     {
       "id": "a582fb5e-dd11-4685-bf91-fe9d07e3f537",
@@ -2197,17 +2205,19 @@
   "dockerAuthenticationFlow": "docker auth",
   "attributes": {
     "cibaBackchannelTokenDeliveryMode": "poll",
-    "cibaExpiresIn": "120",
     "cibaAuthRequestedUserHint": "login_hint",
-    "oauth2DeviceCodeLifespan": "600",
     "clientOfflineSessionMaxLifespan": "0",
     "oauth2DevicePollingInterval": "5",
     "clientSessionIdleTimeout": "0",
-    "parRequestUriLifespan": "60",
-    "clientSessionMaxLifespan": "0",
     "clientOfflineSessionIdleTimeout": "0",
     "cibaInterval": "5",
-    "realmReusableOtpCode": "false"
+    "realmReusableOtpCode": "false",
+    "cibaExpiresIn": "120",
+    "oauth2DeviceCodeLifespan": "600",
+    "parRequestUriLifespan": "60",
+    "clientSessionMaxLifespan": "0",
+    "frontendUrl": "",
+    "acr.loa.map": "{}"
   },
   "keycloakVersion": "23.0.6",
   "userManagedAccessAllowed": false,

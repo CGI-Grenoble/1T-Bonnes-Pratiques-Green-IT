@@ -31,6 +31,8 @@ import { CommonModule } from '@angular/common';
 import { EditOrgaComponent } from './edit-orga/edit-orga.component';
 import { ToastComponent } from './toast/toast.component';
 
+import { DataViewModule } from 'primeng/dataview';
+
 
 /* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -47,6 +49,8 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { environment } from '../environments/environment';
+import { OrgEditComponent } from './org-edit/org-edit.component';
+import { MembersComponent } from './members/members.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -87,6 +91,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AdminComponent,
     UserComponent,
     AccessDeniedComponent,
+    OrgEditComponent,
+    MembersComponent,
   ],
   imports: [
     HttpClientModule,
@@ -110,7 +116,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CardModule,
     CommonModule,
     ReactiveFormsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    DataViewModule
   ],
   bootstrap: [AppComponent],
   providers: [

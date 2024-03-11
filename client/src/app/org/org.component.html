@@ -1,4 +1,4 @@
-<div [style]="{'display': 'flex', 'background-color':'rgb(52, 196, 230)', 'max-height': '486px'}">
+<div [style]="{'display': 'flex', 'background-color':'rgb(52, 196, 230)', 'heigth':'100%'}">
     <!-- rgb(38, 157, 185) -->
     <div [style]="{'align-items': 'center', 'display': 'grid', 'width': '350px', 'text-align': 'center'}"> 
         <app-org-bouton routerLink="/"></app-org-bouton>   
@@ -9,5 +9,6 @@
          <app-org-accueil *ngIf="router.url === '/org'"></app-org-accueil>
         <app-org-detail *ngIf="router.url === '/org/detail'"></app-org-detail> 
         <app-edit-orga *ngIf ="router.url === '/org/create'"></app-edit-orga>
+        <app-org-edit *ngIf ="router.url === '/org/edit'"></app-org-edit>
     </div>
 </div>

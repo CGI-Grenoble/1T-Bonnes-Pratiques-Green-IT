@@ -11,6 +11,7 @@ export class ToastComponent {
   @Input ('nameData') public name! : string;
   @Input ('descriptionData') public description! : string;
   @Input ('privatisationData') public visibilite! : string;
+  @Input ('labelBouton') public label! : string;
 
   constructor(private messageService: MessageService) {}
 
