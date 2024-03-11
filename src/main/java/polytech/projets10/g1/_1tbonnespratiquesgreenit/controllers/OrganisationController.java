@@ -15,7 +15,8 @@ import java.util.List;
 @CrossOrigin(
         origins = "http://localhost:4200",
         allowedHeaders = "*",
-        methods = { RequestMethod.GET }
+        methods = {RequestMethod.GET, RequestMethod.POST}
+
 )
 @RequestMapping("/api/organisations")
 public class OrganisationController {

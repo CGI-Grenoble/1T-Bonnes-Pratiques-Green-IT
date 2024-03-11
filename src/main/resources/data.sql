@@ -1,3 +1,106 @@
+DROP TABLE IF EXISTS public.card;
+DROP TABLE IF EXISTS public.favorite;
+DROP TABLE IF EXISTS public.game;
+DROP TABLE IF EXISTS public.player;
+DROP TABLE IF EXISTS public.organisation;
+DROP TABLE IF EXISTS public.organisation_players;
+
+
+
+create table public.card
+(
+    id               bigint       not null
+        primary key,
+    actors           varchar(255),
+    background_image varchar(255) not null,
+    title            varchar(255) not null,
+    components       varchar(255),
+    description      varchar(1000),
+    difficulty       integer,
+    subtitle         varchar(255),
+    gain_type        varchar(255),
+    logo             varchar(255) not null,
+    value            integer,
+    formation_link   varchar(255)
+);
+
+alter table public.card
+    owner to postgres;
+
+create table public.favorite
+(
+    id       bigint                                                   not null
+        primary key,
+    user_id  varchar(255)                                             not null,
+    category varchar(255) default 'non rencontrée'::character varying not null
+);
+
+alter table public.favorite
+    owner to postgres;
+
+create table public.game
+(
+    id   bigint       not null
+        primary key,
+    date timestamp(6) not null
+);
+
+alter table public.game
+    owner to postgres;
+
+create table public.organisation
+(
+    id          bigint      not null
+        primary key,
+    description varchar(256),
+    is_public   boolean     not null,
+    name        varchar(50) not null
+        constraint uk_4cj3idr72jukvc49m5dgo9jmo
+            unique
+);
+
+alter table public.organisation
+    owner to postgres;
+
+create table public.player
+(
+    id bigint not null
+        primary key
+);
+
+alter table public.player
+    owner to postgres;
+
+create table public.organisation_players
+(
+    organisation_id bigint not null
+        constraint fkc7iica9k4uddcjnr7jfgs2ywk
+            references public.organisation,
+    players_id      bigint not null
+        constraint fk6uber8vyjyr55gt3maveeutsr
+            references public.player,
+    primary key (organisation_id, players_id)
+);
+
+alter table public.organisation_players
+    owner to postgres;
+
+create table public.player_player_organisations
+(
+    player_id               bigint not null
+        constraint fkpov80md4vro2d0ire6x3jbkyt
+            references public.player,
+    player_organisations_id bigint not null
+        constraint fkghchsrb96bytq2y1lra1ht5f5
+            references public.organisation,
+    primary key (player_id, player_organisations_id)
+);
+
+alter table public.player_player_organisations
+    owner to postgres;
+
+
+
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (0, 'Les pneus', true, 'Michelin') ON CONFLICT DO NOTHING;
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (1, 'La électricité', false, 'Schneider Electric') ON CONFLICT DO NOTHING;
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (2, '...', false, 'Viseo') ON CONFLICT DO NOTHING;
