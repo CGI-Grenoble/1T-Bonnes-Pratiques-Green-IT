@@ -11,7 +11,9 @@ export class AppComponent implements OnInit {
   constructor(private primengConfig: PrimeNGConfig, private httpClient: HttpClient, private readonly keycloak: KeycloakService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.primengConfig.ripple = true;
+    let userData = await this.keycloak.loadUserProfile()
+    console.log(userData['attributes'])
   }
 }
