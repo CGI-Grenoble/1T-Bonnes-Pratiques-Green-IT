@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,6 +27,9 @@ public class Organisation {
 
     @OneToMany(mappedBy = "organisation")
     private Set<Game> games;
+
+    @OneToMany(mappedBy = "organisation")
+    private List<OrgaJoinRequest> joinRequests;
 
     public Set<Game> getGames() {
         return games;

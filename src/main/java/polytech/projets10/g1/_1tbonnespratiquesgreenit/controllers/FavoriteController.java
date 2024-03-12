@@ -13,12 +13,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(
-        origins = "${frontend.url}",
-        allowedHeaders = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST}
-
-)
 @RequestMapping("/api/favorites")
 public class FavoriteController {
 
