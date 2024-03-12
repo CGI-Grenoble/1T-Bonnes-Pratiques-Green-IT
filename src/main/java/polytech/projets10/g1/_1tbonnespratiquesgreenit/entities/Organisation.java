@@ -2,6 +2,8 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Organisation {
 
@@ -18,6 +20,9 @@ public class Organisation {
 
     @Column(name = "is_public", nullable = false)
     private boolean is_public;
+
+    @ManyToMany
+    Set<Player> players;
 
     public Long getId() {
         return id;
