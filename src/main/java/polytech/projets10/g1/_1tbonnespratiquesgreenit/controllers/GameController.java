@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Game;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST}
+@CrossOrigin(origins = "${frontend.url}", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST}
 
 )
 @RequestMapping("/api/games")
@@ -40,11 +41,13 @@ public class GameController {
     }
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     public List<Game> getAllGames() {
         return gameRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> getGame(@PathVariable Long id) {
         var game = gameRepository.findById(id);
         if (game.isPresent()) return new ResponseEntity<>(game.get(), HttpStatus.OK);
@@ -53,6 +56,7 @@ public class GameController {
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Game game) throws BadRequestException, URISyntaxException {
         if (game.getId() != null) throw new BadRequestException("A new game cannot already have an ID");
         var result = gameRepository.save(game);
@@ -60,6 +64,7 @@ public class GameController {
     }
 
     @PostMapping("/{gameId}/join")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> userJoinsGame(@PathVariable Long gameId, @RequestBody String userId) {
         var game = gameRepository.findById(gameId);
         if (!game.isPresent())
@@ -87,13 +92,14 @@ public class GameController {
     }
 
     @PostMapping("/{gameId}/leave")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> userLeavesGame(@PathVariable Long gameId, @RequestBody String userId) {
         var game = gameRepository.findById(gameId);
         if (!game.isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cette partie n'existe pas: " + gameId);
 
         UserResource user = keycloak.realm(this.realm).users().get(userId);
-         try {
+        try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 

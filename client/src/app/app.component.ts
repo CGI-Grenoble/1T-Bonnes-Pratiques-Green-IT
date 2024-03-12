@@ -22,5 +22,6 @@ export class AppComponent implements OnInit {
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/userOrganisations/s' + userData.id, {}).subscribe(res => console.log(res))
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/organisationUsers/michelin', {}).subscribe(res => console.log(res))
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/games/1/leave', userData.id).subscribe(res => console.log(res))
+    this.httpClient.get<{ message: string }>('http://localhost:8081/api/cards', {}).subscribe(res => console.log(res))
   }
 }

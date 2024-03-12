@@ -7,6 +7,7 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "${frontend.url}", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RequestMapping("/api/userOrganisations")
 public class UserOrganisationController {
 
@@ -26,6 +27,7 @@ public class UserOrganisationController {
     private String realm;
 
     @GetMapping("/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     List<String> getUserOrganisations(@PathVariable String userId) {
         UserResource user = keycloak.realm(this.realm).users().get(userId);
         try {
@@ -38,6 +40,7 @@ public class UserOrganisationController {
     }
 
     @PostMapping("/remove/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_org-admin')")
     void removeUserOrganisation(@PathVariable String userId, @RequestBody String deleteOrganisation) {
         UserResource user = keycloak.realm(this.realm).users().get(userId);
         try {
@@ -62,6 +65,7 @@ public class UserOrganisationController {
     }
 
     @PostMapping("/add/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_org-admin')")
     void addUserOrganisations(@PathVariable String userId, @RequestBody String newOrganisation) {
         UserResource user = keycloak.realm(this.realm).users().get(userId);
         try {

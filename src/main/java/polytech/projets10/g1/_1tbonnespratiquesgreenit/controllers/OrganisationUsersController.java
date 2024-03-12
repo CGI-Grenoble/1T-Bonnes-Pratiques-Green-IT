@@ -4,6 +4,7 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.controllers;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(
-        origins = "http://localhost:4200",
+        origins = "${frontend.url}",
         allowedHeaders = "*",
         methods = {RequestMethod.GET}
 )
@@ -22,6 +23,7 @@ public class OrganisationUsersController {
     Keycloak keycloak;
 
     @GetMapping("/{orgaName}")
+    @PreAuthorize("hasAuthority('ROLE_user')")
     List<UserInfo> getUserOrganisations(@PathVariable String orgaName) {
         List<UserRepresentation> users = keycloak.realm("1t-bonnes-pratiques").users().searchByAttributes("organisation:" + orgaName);
 
