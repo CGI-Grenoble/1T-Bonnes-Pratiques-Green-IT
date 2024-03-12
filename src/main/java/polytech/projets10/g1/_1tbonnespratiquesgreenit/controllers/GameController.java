@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Game;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.GameStatus;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.repositories.GameRepository;
 
 import java.net.URI;
@@ -22,8 +23,10 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "${frontend.url}", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST}
-
+@CrossOrigin(
+        origins = "${frontend.url}",
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET, RequestMethod.POST}
 )
 @RequestMapping("/api/games")
 public class GameController {
@@ -50,8 +53,8 @@ public class GameController {
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> getGame(@PathVariable Long id) {
         var game = gameRepository.findById(id);
-        if (game.isPresent()) return new ResponseEntity<>(game.get(), HttpStatus.OK);
-        return new ResponseEntity<>((Game) null, HttpStatus.NOT_FOUND);
+        if (game.isPresent()) return ResponseEntity.ok(game.get());
+        return ResponseEntity.ok(null);
 
     }
 
@@ -69,6 +72,13 @@ public class GameController {
         var game = gameRepository.findById(gameId);
         if (!game.isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cette partie n'existe pas: " + gameId);
+
+        Game gameObj = game.get();
+        if (gameObj.getStatus() != GameStatus.WAITING_TO_START)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cette partie est en cours: " + gameId);
+
+        if (this.getPlayersCountInGame(gameId) >= 4)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cette partie est pleine: " + gameId);
 
         UserResource user = keycloak.realm(this.realm).users().get(userId);
         try {
@@ -119,5 +129,10 @@ public class GameController {
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cet utilisateur n'existe pas: " + userId, e);
         }
+    }
+
+    private int getPlayersCountInGame(Long gameId) {
+        List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("game:" + gameId);
+        return users.size();
     }
 }

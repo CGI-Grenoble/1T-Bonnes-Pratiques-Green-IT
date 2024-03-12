@@ -1,6 +1,5 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.keycloak;
 
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -29,7 +28,7 @@ public class KeycloakConfig {
     @Bean
     public Keycloak keycloak() {
 
-       return KeycloakBuilder.builder()
+        return KeycloakBuilder.builder()
                 .serverUrl(this.serverUrl)
                 .realm(this.realm)
                 .clientId(this.clientId)

@@ -12,7 +12,7 @@ public class Favorite {
     @Column(name = "user_id", nullable = false)
     private String user_id;
 
-    @Column(name= "category", nullable = false, columnDefinition = "varchar(255) default 'non rencontrée'")
+    @Column(name = "category", nullable = false, columnDefinition = "varchar(255) default 'non rencontrée'")
     private String category;
 
     @OneToOne

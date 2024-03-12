@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
@@ -16,8 +17,12 @@ public class Game {
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
     private Date date;
 
-    @ManyToOne(cascade = { CascadeType.MERGE } )
-    @JoinColumn(name="organisation_id", referencedColumnName = "id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, columnDefinition = "varchar(255) default 'WAITING_TO_START'")
+    private GameStatus status;
+
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "organisation_id", referencedColumnName = "id", nullable = false)
     private Organisation organisation;
 
     public Organisation getOrganisation() {
@@ -42,5 +47,13 @@ public class Game {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void GameStatus(GameStatus status) {
+        this.status = status;
     }
 }
