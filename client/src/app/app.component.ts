@@ -13,11 +13,14 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+
+
     this.primengConfig.ripple = true;
     let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile
-
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/userOrganisations/remove/' + userData.id, "michelin").subscribe(res => console.log(res))
-    // this.httpClient.get<{ message: string }>('http://localhost:8081/api/userOrganisations/' + userData.id, {}).subscribe(res => console.log(res))
+    // this.httpClient.get<{ message: string }>('http://localhost:8081/api/userOrganisations/s' + userData.id, {}).subscribe(res => console.log(res))
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/organisationUsers/michelin', {}).subscribe(res => console.log(res))
+    // this.httpClient.post<{ message: string }>('http://localhost:8081/api/games/1/leave', userData.id).subscribe(res => console.log(res))
   }
 }
