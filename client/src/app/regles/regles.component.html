@@ -1,0 +1,117 @@
+<div class="fond">
+  <div class="fond-regles">
+    <p-fieldset
+      legend="Les règles du jeu"
+      [style]="{ height: '80vh', margin: '5vh', width: '30vw' }"
+    >
+      <p-scrollPanel [style]="{ width: '100%', height: '65vh' }">
+        <div class="texte">
+          <p>
+            <b>Nombre de participants :</b> <br />
+            4 joueurs (jouer en équipes à plus que 4 joueurs)
+          </p>
+
+          <p>
+            <b>But du jeu :</b> <br />
+            être le premier à avoir appliqué suffisamment de bonnes pratiques
+            pour économiser au moins 1T (1000kg) de CO2 via des pratiques de
+            Green IT. Si vous êtes pressés, arrêtez vous à 800kg voire 600kg.
+          </p>
+          <p>
+            <b>Préparation du jeu :</b> <br />
+            > Mélanger toutes les cartes <br />
+            > Distribuer 7 cartes à chacun <br />
+            > Les cartes restantes constituent une pioche face cachée <br />
+            > Le joueur le plus jeune commence puis chaque joueur joue à son
+            tour dans le sens des aiguilles d'une montre <br />
+          </p>
+          <p>
+            <b>Déroulement d'un tour :</b> <br />Le joueur peut utiliser l'une
+            de ses cartes en main pour réaliser une action: Poser une carte
+            Sensibilisation initiale devant soi. Il est obligatoire d'avoir posé
+            1 carte Sensibilisation initiale pour pouvoir jouer des cartes de
+            bonne pratique. Il n'est pas autorisé d'en poser plus d'une pour
+            éviter de fausser le jeu.
+          </p>
+
+          <p>
+            Poser une carte bonne pratique devant soi à côté de la carte
+            Sensibilisation initiale si aucune mauvaise pratique n'a été posée
+            par un adversaire.
+          </p>
+
+          <p>
+            Poser une carte mauvaise pratique sur le jeu d'un autre joueur pour
+            le bloquer dans sa progression, s'il n'est pas déjà bloqué par une
+            mauvaise pratique.
+          </p>
+
+          <p>
+            Poser une carte formation devant soi sur une carte mauvaise pratique
+            posée par un adversaire. Elle doit être de même nature. Si besoin,
+            il faudra se former à nouveau car votre projet peut intégrer de
+            nouveaux membres.
+          </p>
+
+          <p>
+            Poser une carte expert devant soi pour contrecarrer une carte
+            mauvaise pratique de même nature ou pour se protéger de cartes
+            mauvaise pratique à venir.
+          </p>
+
+          <p>
+            Ou se défausser d'une carte s'il est impossible de jouer un autre
+            carte
+          </p>
+
+          <p>
+            Puis piocher une nouvelle carte pour toujours avoir 7 cartes en
+            main. Lorsque la pioche est épuisée, mélanger la défausse qui
+            devient la nouvelle pioche.
+          </p>
+        </div>
+      </p-scrollPanel>
+    </p-fieldset>
+    <div >
+
+      <img src={{imageUrl}} alt="carte légendée" [style]="{width: '20vw'}" />
+    </div>
+
+    <p-fieldset
+      legend="Conseils"
+      [style]="{ height: '80vh', margin: '5vh', width: '25vw' }"
+    >
+      <p-scrollPanel [style]="{ width: '100%', height: '65vh' }">
+        <div class="texte">
+          <p>
+            Nous vous encourageons très vivement à utiliser ce jeu de cartes
+            pour animer un serious game sur le thème du green IT et de
+            l'éco-conception. Rassemblez product owner, concepteurs
+            fonctionnels, lead tech, architectes, et développeurs, jouez au jeu
+            avec les règles classiques et posez-vous les questions suivantes à
+            chaque fois qu'une bonne ou une mauvaise pratique est posée :
+          </p>
+
+          <p>
+            > Cette bonne / mauvaise pratique est- elle appliquée sur mon projet
+            ?
+          </p>
+          <p>
+            > En cas de bonne pratique, est-elle applicable sur mon projet ?
+            Comment le faire ?
+          </p>
+          <p>
+            > Comment peut-on vérifier ou mesurer que la mauvaise pratique
+            associée n'est pas reproduite ?
+          </p>
+          <p>
+            En fin de jeu, faites la liste des bonnes pratiques pas encore
+            appliquées et posez-vous de nouvelles questions :
+          </p>
+          <p>> Quelles pratiques mettre en oeuvre en priorité ?</p>
+          <p>> Comment conserver la dynamique d'amélioration après le jeu ?</p>
+        </div>
+      </p-scrollPanel>
+    </p-fieldset>
+  </div>
+</div>

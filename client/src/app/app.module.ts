@@ -28,21 +28,8 @@ import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonn
 import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
 import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
 import { CommonModule } from '@angular/common';
-import { EditOrgaComponent } from './edit-orga/edit-orga.component';
 import { ToastComponent } from './toast/toast.component';
-
 import { DataViewModule } from 'primeng/dataview';
-
-
-/* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarHarness} from '@angular/material/toolbar/testing'; 
- */
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient} from "@angular/common/http";
 import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import { AdminComponent } from './admin/admin.component';
@@ -51,6 +38,11 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { environment } from '../environments/environment';
 import { OrgEditComponent } from './org-edit/org-edit.component';
 import { MembersComponent } from './members/members.component';
+import { OrgCreateComponent } from './org-create/org-create.component';
+import { ReglesComponent } from './regles/regles.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -86,13 +78,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
     OrgBoutonComponent,
     OrgAccueilComponent,
     RadioComponent,
-    EditOrgaComponent,
     ToastComponent,
     AdminComponent,
     UserComponent,
     AccessDeniedComponent,
     OrgEditComponent,
     MembersComponent,
+    OrgCreateComponent,
+    ReglesComponent
   ],
   imports: [
     HttpClientModule,
@@ -117,7 +110,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CommonModule,
     ReactiveFormsModule,
     KeycloakAngularModule,
-    DataViewModule
+    DataViewModule,
+    FieldsetModule,
+    ScrollPanelModule
   ],
   bootstrap: [AppComponent],
   providers: [

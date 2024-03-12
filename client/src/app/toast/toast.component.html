@@ -1,4 +1,12 @@
 <div class="card">
-    <p-toast></p-toast>
-    <button [style]="{'background':'#FF978A', 'border':'none'}" type="button" pButton pRipple (click)="submit()" label={{label}} ></button>
+  <p-toast></p-toast>
+  <button
+    [style]="{ background: '#FF978A', border: 'none' }"
+    type="button"
+    pButton
+    pRipple
+    (click)="submit()"
+    label="{{ label }}"
+    routerLink=".."
+  ></button>
 </div>

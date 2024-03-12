@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {KeycloakService} from "keycloak-angular";
+import { KeycloakCustomProfile } from '../keycloak-user';
 
 interface Language {
   name: string;
@@ -24,8 +25,8 @@ export class NavBarComponent implements OnInit{
   
   default : Language = { name: 'Français', code: 'fr' };
 
-  userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
-  name : string = this.userData.firstName + " " + this.userData.lastName
+  userName! :string;
+ 
 
     ngOnInit() {
         
@@ -37,10 +38,19 @@ export class NavBarComponent implements OnInit{
       this.formGroup = new FormGroup({
           selectedLanguage: new FormControl<Language | null>(null)
       });  
+
+      this.getUserName();
     }
 
     async logout() {
       await this.keycloak.logout(window.location.origin)
     }
+
+    async getUserName(){
+      let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
+      this.userName = userData.firstName + " " + userData.lastName;
+    }
+
+   
   
 }
