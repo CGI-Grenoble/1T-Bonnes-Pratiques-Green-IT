@@ -39,6 +39,9 @@ import { environment } from '../environments/environment';
 import { OrgEditComponent } from './org-edit/org-edit.component';
 import { MembersComponent } from './members/members.component';
 import { OrgCreateComponent } from './org-create/org-create.component';
+import { ReglesComponent } from './regles/regles.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -81,7 +84,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AccessDeniedComponent,
     OrgEditComponent,
     MembersComponent,
-    OrgCreateComponent
+    OrgCreateComponent,
+    ReglesComponent
   ],
   imports: [
     HttpClientModule,
@@ -106,7 +110,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CommonModule,
     ReactiveFormsModule,
     KeycloakAngularModule,
-    DataViewModule
+    DataViewModule,
+    FieldsetModule,
+    ScrollPanelModule
   ],
   bootstrap: [AppComponent],
   providers: [
