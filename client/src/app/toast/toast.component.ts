@@ -13,7 +13,6 @@ export class ToastComponent {
   @Input ('privatisationData') public visibilite! : boolean;
   @Input ('labelBouton') public label! : string;
   @Input ('createOrga')  submitFunction : Function | undefined;
-  // @Input() submitFunction: (orga_name:string, orga_is_public:boolean, orga_description:string) => void;
 
   constructor(private messageService: MessageService) {}
 
@@ -23,6 +22,7 @@ export class ToastComponent {
    console.log("prive : ", this.visibilite);
 
    if (this.submitFunction){
+    console.log("submitFunction");
     this.submitFunction(this.name,this.visibilite,this.description)
    }
    
