@@ -6,6 +6,7 @@
                 <p-button label="Accueil" icon="pi pi-home" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>
                 <p-button label ="Jouer" icon="pi pi-desktop" [style]="{'background':'#650A21', 'border':'none'}"></p-button>
                 <p-button label="Comment jouer ?" icon="pi pi-question-circle" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>  
+                  
             </div>
         </ng-template>
         <ng-template pTemplate="center">
@@ -23,8 +24,9 @@
                 <form [style]="{'color': 'white'}">
                     <p-dropdown  formControlName="selectedLanguage" [options]="languages" optionLabel="name"  [style]="{'background-color': 'transparent', 'border-color': 'transparent'}"></p-dropdown>
                 </form>
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                
                 <span class="font-bold text-bluegray-50">Eloi CHARRA</span>
+                <p-button label="Deconnexion" icon="pi pi-sign-out" (click)="logout()" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>
             </div>
         </ng-template>
     </p-toolbar>
