@@ -1,3 +1,4 @@
+
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,15 +14,43 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
+import { RadioComponent } from './radio/radio.component';
+import { OrgComponent } from './org/org.component';
+import { CardModule } from 'primeng/card';
+import { OrgDetailComponent } from './org-detail/org-detail.component';
+import { BonnesPratiquesComponent } from './bonnes-pratiques/bonnes-pratiques.component';
+import { BonnesPratiquesBoutonComponent } from './bonnes-pratiques-bouton/bonnes-pratiques-bouton.component';
+import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonnes-pratiques-accueil.component';
+import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
+import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
+import { CommonModule } from '@angular/common';
+import { EditOrgaComponent } from './edit-orga/edit-orga.component';
+import { ToastComponent } from './toast/toast.component';
+
+import { DataViewModule } from 'primeng/dataview';
+
+
+/* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarHarness} from '@angular/material/toolbar/testing'; 
+ */
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient} from "@angular/common/http";
 import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { environment } from '../environments/environment';
+import { OrgEditComponent } from './org-edit/org-edit.component';
+import { MembersComponent } from './members/members.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -49,9 +78,21 @@ function initializeKeycloak(keycloak: KeycloakService) {
   declarations: [
     AppComponent,
     NavBarComponent,
+    OrgComponent,
+    OrgDetailComponent,
+    BonnesPratiquesComponent,
+    BonnesPratiquesBoutonComponent,
+    BonnesPratiquesAccueilComponent,
+    OrgBoutonComponent,
+    OrgAccueilComponent,
+    RadioComponent,
+    EditOrgaComponent,
+    ToastComponent,
     AdminComponent,
     UserComponent,
     AccessDeniedComponent,
+    OrgEditComponent,
+    MembersComponent,
   ],
   imports: [
     HttpClientModule,
@@ -70,8 +111,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     FormsModule,
     ReactiveFormsModule,
     MenubarModule,
-    KeycloakAngularModule
+    ToastModule,
+    FormsModule,
+    CardModule,
+    CommonModule,
+    ReactiveFormsModule,
+    KeycloakAngularModule,
+    DataViewModule
   ],
+  bootstrap: [AppComponent],
   providers: [
     provideHttpClient(),
     {
@@ -86,8 +134,5 @@ function initializeKeycloak(keycloak: KeycloakService) {
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
 })
-
-
-export class AppModule { }
+export class AppModule {}
