@@ -28,7 +28,6 @@ import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonn
 import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
 import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
 import { CommonModule } from '@angular/common';
-import { EditOrgaComponent } from './edit-orga/edit-orga.component';
 import { ToastComponent } from './toast/toast.component';
 
 import { DataViewModule } from 'primeng/dataview';
@@ -51,6 +50,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { environment } from '../environments/environment';
 import { OrgEditComponent } from './org-edit/org-edit.component';
 import { MembersComponent } from './members/members.component';
+import { OrgCreateComponent } from './org-create/org-create.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -86,13 +86,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
     OrgBoutonComponent,
     OrgAccueilComponent,
     RadioComponent,
-    EditOrgaComponent,
     ToastComponent,
     AdminComponent,
     UserComponent,
     AccessDeniedComponent,
     OrgEditComponent,
     MembersComponent,
+    OrgCreateComponent
   ],
   imports: [
     HttpClientModule,

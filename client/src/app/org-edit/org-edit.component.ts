@@ -9,7 +9,7 @@ import { FormControl, FormsModule } from '@angular/forms';
 export class OrgEditComponent {
   name!: string;
   description!: string;
-  visibilite!: string;
+  visibilite!: boolean;
   nature =  new FormControl('');
   bouton_label = "Modifier"
  

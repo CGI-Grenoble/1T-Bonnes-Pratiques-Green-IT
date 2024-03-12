@@ -10,8 +10,10 @@ import { MessageService } from 'primeng/api';
 export class ToastComponent {
   @Input ('nameData') public name! : string;
   @Input ('descriptionData') public description! : string;
-  @Input ('privatisationData') public visibilite! : string;
+  @Input ('privatisationData') public visibilite! : boolean;
   @Input ('labelBouton') public label! : string;
+  @Input ('createOrga')  submitFunction : Function | undefined;
+  // @Input() submitFunction: (orga_name:string, orga_is_public:boolean, orga_description:string) => void;
 
   constructor(private messageService: MessageService) {}
 
@@ -20,6 +22,10 @@ export class ToastComponent {
    console.log("description : ", this.description);
    console.log("prive : ", this.visibilite);
 
+   if (this.submitFunction){
+    this.submitFunction(this.name,this.visibilite,this.description)
+   }
+   
 
 
     this.messageService.add({
@@ -28,4 +34,6 @@ export class ToastComponent {
       detail: 'Message Content',
     });
   }
+
+  
 }

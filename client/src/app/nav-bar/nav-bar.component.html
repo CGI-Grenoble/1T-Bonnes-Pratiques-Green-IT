@@ -25,7 +25,7 @@
                     <p-dropdown  formControlName="selectedLanguage" [options]="languages" optionLabel="name"  [style]="{'background-color': 'transparent', 'border-color': 'transparent'}"></p-dropdown>
                 </form>
                 
-                <span class="font-bold text-bluegray-50">Eloi CHARRA</span>
+                <span class="font-bold text-bluegray-50">{{this.userName}}</span>
                 <p-button label="Deconnexion" icon="pi pi-sign-out" (click)="logout()" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>
             </div>
         </ng-template>
