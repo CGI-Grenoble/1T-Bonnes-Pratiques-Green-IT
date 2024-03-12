@@ -16,6 +16,18 @@ public class Game {
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
     private Date date;
 
+    @ManyToOne(cascade = { CascadeType.MERGE } )
+    @JoinColumn(name="organisation_id", referencedColumnName = "id", nullable = false)
+    private Organisation organisation;
+
+    public Organisation getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
+    }
+
     public Long getId() {
         return id;
     }

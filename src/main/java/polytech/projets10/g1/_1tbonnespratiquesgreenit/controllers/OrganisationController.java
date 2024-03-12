@@ -16,7 +16,6 @@ import java.util.List;
         origins = "http://localhost:4200",
         allowedHeaders = "*",
         methods = {RequestMethod.GET, RequestMethod.POST}
-
 )
 @RequestMapping("/api/organisations")
 public class OrganisationController {
@@ -38,7 +37,6 @@ public class OrganisationController {
         if (organisation.isPresent())
             return new ResponseEntity<>(organisation.get(), HttpStatus.OK);
         return new ResponseEntity<>((Organisation) null, HttpStatus.NOT_FOUND);
-
     }
 
     @PostMapping("")

@@ -21,8 +21,16 @@ public class Organisation {
     @Column(name = "is_public", nullable = false)
     private boolean is_public;
 
-    @ManyToMany
-    Set<Player> players;
+    @OneToMany(mappedBy = "organisation")
+    private Set<Game> games;
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 
     public Long getId() {
         return id;
