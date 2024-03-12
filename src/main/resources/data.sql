@@ -1,11 +1,7 @@
 DROP TABLE IF EXISTS public.card;
 DROP TABLE IF EXISTS public.favorite;
 DROP TABLE IF EXISTS public.game;
-DROP TABLE IF EXISTS public.player;
 DROP TABLE IF EXISTS public.organisation;
-DROP TABLE IF EXISTS public.organisation_players;
-
-
 
 create table public.card
 (
@@ -69,34 +65,6 @@ create table public.player
 );
 
 alter table public.player
-    owner to postgres;
-
-create table public.organisation_players
-(
-    organisation_id bigint not null
-        constraint fkc7iica9k4uddcjnr7jfgs2ywk
-            references public.organisation,
-    players_id      bigint not null
-        constraint fk6uber8vyjyr55gt3maveeutsr
-            references public.player,
-    primary key (organisation_id, players_id)
-);
-
-alter table public.organisation_players
-    owner to postgres;
-
-create table public.player_player_organisations
-(
-    player_id               bigint not null
-        constraint fkpov80md4vro2d0ire6x3jbkyt
-            references public.player,
-    player_organisations_id bigint not null
-        constraint fkghchsrb96bytq2y1lra1ht5f5
-            references public.organisation,
-    primary key (player_id, player_organisations_id)
-);
-
-alter table public.player_player_organisations
     owner to postgres;
 
 
