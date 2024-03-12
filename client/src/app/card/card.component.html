@@ -1,0 +1,10 @@
+<div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">   
+    <p-card [header]="title" [subheader]="subtitle" [style]="styleCard">
+        <p>{{text}}</p>
+        <p-button *ngIf="type" icon ="pi pi-eye" [link]="true" routerLink="" [style]="{'margin-top': '0.75rem'}"></p-button>
+        <ng-template *ngIf="!type" pTemplate="footer" >
+            <p-button icon ="pi pi-eye" [link]="true" routerLink={{link}}></p-button>
+            <p-button *ngIf="!admin" icon ="pi pi-pencil" [link]="true" [style]="{ 'margin-left': '.5em' }"></p-button>
+        </ng-template>
+    </p-card>
+</div>

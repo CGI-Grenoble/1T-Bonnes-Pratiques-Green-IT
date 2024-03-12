@@ -6,9 +6,9 @@
 
     <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1rem', 'margin-bottom': '1rem', 'display': 'grid', 'align-items': 'center' ,'overflow-y': 'auto', 'width':'60vw'}">
         <h2 [style]= "{'margin-top': '0.5rem'}">Mes Organisations</h2>
-         <app-org-accueil *ngIf="router.url === '/org'"></app-org-accueil>
-        <app-org-detail *ngIf="router.url === '/org/detail'"></app-org-detail> 
-        <app-org-create *ngIf ="router.url === '/org/create'"></app-org-create>
-        <app-org-edit *ngIf ="router.url === '/org/edit'"></app-org-edit>
+        <app-org-accueil *ngIf="router.url === '/org'"></app-org-accueil>
+        <app-org-detail *ngIf="router.url.startsWith('/org/detail')" [show]="true"></app-org-detail> 
+        <app-edit-orga *ngIf ="router.url === '/org/create'"></app-edit-orga>
+        <app-org-edit *ngIf ="router.url.startsWith('/org/edit')"></app-org-edit>
     </div>
 </div>
