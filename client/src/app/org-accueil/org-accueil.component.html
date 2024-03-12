@@ -1,7 +1,7 @@
-<div id="cards" class=" flex ">
+<!-- <div id="cards" class=" flex ">
     <app-card [title]="'Michelin'" [subtitle]="'XX membres'" [text] = "'Vous êtes membre de cette organisation'" [admin]="false" [type]="false" [styleCard]="{ width: '305px'}"></app-card>
     <app-card [title]="'Shneider'" [subtitle]="'XX membres'" [text] = "'Vous êtes administrateur de cette organisation'" [admin]="true" [type]="false" [styleCard]="{ width: '305px'}"></app-card>
-    <!-- <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '3rem'}">    
+    <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '3rem'}">    
         <p-card header="Shneider" subheader="XX membres" [style]="{ width: '300px'}">
             <p>Vous êtes administarteur de cette organisation</p>
             <ng-template pTemplate="footer" >
@@ -9,7 +9,12 @@
                 <p-button icon ="pi pi-pencil" [link]="true" [style]="{ 'margin-left': '.5em' }"></p-button> 
             </ng-template>
         </p-card>
-    </div> -->
+    </div>
+</div> -->
+<div id="cards" class=" grid " [style]= "{ 'display': 'grid','grid-template-columns': 'repeat(2, 1fr)'} ">
+    <div *ngFor="let orga of orgas">
+        <app-card [title]="orga['name']" [subtitle]="'XX membres'" [text] = "'Vous êtes membre de cette organisation'" [admin]="false" [type]="false" [styleCard]="{ width: '305px'}"></app-card>
+    </div>
 </div>
 <i class="pi pi-search"> Rechercher une organisation</i>
 <p-inputGroup [style]="{'margin-left': '180px'}">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class OrgComponent {
 
+  orgas!: any;
+
   constructor(public router: Router) { }
+  
   onContinue() {
     this.router.navigateByUrl('org');
-}
+  }
+
 
 }

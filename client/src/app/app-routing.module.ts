@@ -46,6 +46,15 @@ const routes: Routes = [
       ],
       data: { roles: ['user'] },
     },
+    {
+      path: 'a-appliquer-en-priorite', // child route path
+      component: BonnesPratiquesComponent, // Replace OrgDetailComponent with OrgComponent
+      children: [
+        // {path: 'edit',
+        // component : EditOrgComponent,}
+      ],
+      data: { roles: ['user'] },
+    },
     { path: '',
     component: BonnesPratiquesComponent,
     children : [
