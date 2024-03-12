@@ -1,31 +1,69 @@
 <div class="nav">
-    <p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{'border-radius': '0rem', 'background-image': 'linear-gradient(to right, #650A21, #650A21)', 'border':'0px'  }">
-        <ng-template pTemplate="start">
-            <div class="flex flex-wrap align-items-center gap-3">
-                <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" />
-                <p-button label="Accueil" icon="pi pi-home" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>
-                <p-button label ="Jouer" icon="pi pi-desktop" [style]="{'background':'#650A21', 'border':'none'}"></p-button>
-                <p-button label="Comment jouer ?" icon="pi pi-question-circle" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>  
-            </div>
-        </ng-template>
-        <ng-template pTemplate="center">
-            <!-- <div class="flex flex-wrap align-items-center gap-3">
+  <p-toolbar
+    styleClass="bg-gray-900 shadow-2"
+    [style]="{
+      'border-radius': '0rem',
+      'background-image': 'linear-gradient(to right, #650A21, #650A21)',
+      border: '0px'
+    }"
+  >
+    <ng-template pTemplate="start">
+      <div class="flex flex-wrap align-items-center gap-3">
+        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" />
+        <p-button
+          label="Accueil"
+          icon="pi pi-home"
+          [style]="{ background: '#650A21', border: 'none' }"
+          routerLink="/org"
+        >
+        </p-button>
+        <p-button
+          label="Jouer"
+          icon="pi pi-desktop"
+          [style]="{ background: '#650A21', border: 'none' }"
+        ></p-button>
+        <p-button
+          label="Comment jouer ?"
+          icon="pi pi-question-circle"
+          [style]="{ background: '#650A21', border: 'none' }"
+          routerLink="/regles"
+        >
+        </p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="center">
+      <!-- <div class="flex flex-wrap align-items-center gap-3">
                 <p-button label="Accueil" icon="pi pi-home" >
                 </p-button>
                 <p-button label ="Jouer" icon="pi pi-desktop"></p-button>
                 <p-button label="Comment jouer ?" icon="pi pi-question-circle"> 
                 </p-button>
             </div> -->
-        </ng-template>
-        <ng-template pTemplate="end">
-            <div class="flex align-items-center gap-2">
-                <span class="pi pi-globe" [style]="{'color': 'white'}"></span>
-                <form [style]="{'color': 'white'}">
-                    <p-dropdown  formControlName="selectedLanguage" [options]="languages" optionLabel="name"  [style]="{'background-color': 'transparent', 'border-color': 'transparent'}"></p-dropdown>
-                </form>
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
-                <span class="font-bold text-bluegray-50">Eloi CHARRA</span>
-            </div>
-        </ng-template>
-    </p-toolbar>
-    </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <span class="pi pi-globe" [style]="{ color: 'white' }"></span>
+        <form [style]="{ color: 'white' }">
+          <p-dropdown
+            formControlName="selectedLanguage"
+            [options]="languages"
+            optionLabel="name"
+            [style]="{
+              'background-color': 'transparent',
+              'border-color': 'transparent'
+            }"
+          ></p-dropdown>
+        </form>
+
+        <span class="font-bold text-bluegray-50">{{ this.userName }}</span>
+        <p-button
+          label="Deconnexion"
+          icon="pi pi-sign-out"
+          (click)="logout()"
+          [style]="{ background: '#650A21', border: 'none' }"
+        >
+        </p-button>
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>
