@@ -12,4 +12,12 @@ export class CardComponent {
   @Input() styleCard!: any;
   @Input() admin!: boolean;
   @Input() type!: boolean; /*true if bonnes pratiques */
+  @Input() id!: any;
+  link: any;
+
+  async ngOnInit() {
+    this.link = "detail/" + this.id
+    console.log(this.link)
+  
+  }
 }

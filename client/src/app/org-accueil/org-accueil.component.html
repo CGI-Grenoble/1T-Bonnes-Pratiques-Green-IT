@@ -13,7 +13,8 @@
 </div> -->
 <div id="cards" class=" grid " [style]= "{ 'display': 'grid','grid-template-columns': 'repeat(2, 1fr)'} ">
     <div *ngFor="let orga of orgas">
-        <app-card [title]="orga['name']" [subtitle]="'XX membres'" [text] = "'Vous êtes membre de cette organisation'" [admin]="false" [type]="false" [styleCard]="{ width: '305px'}"></app-card>
+        <app-card [title]="orga['name']" [subtitle]="'XX membres'" [text] = "'Vous êtes membre de cette organisation'" [admin]="false" [type]="false" [id]="orga['id']" [styleCard]="{ width: '305px'}"></app-card>
+        <app-org-detail [org]="orga['name']" [show]="false"></app-org-detail>
     </div>
 </div>
 <i class="pi pi-search"> Rechercher une organisation</i>
@@ -23,4 +24,4 @@
         <button [style]="{'text-align' : 'center'}"  type="button" pButton icon="pi pi-search"></button>
     </p-inputGroup>
 </p-inputGroup>
-<p-button [style]="{'margin-top':'3.5rem','margin-bottom':'0.5rem'}" icon ="pi pi-plus-circle" label ="Créer une organisation" [link]="true"></p-button>
+<p-button [style]="{'margin-top':'3.5rem','margin-bottom':'0.5rem'}" icon ="pi pi-plus-circle" label ="Créer une organisation" [link]="true" routerLink ="create"></p-button>

@@ -1,11 +1,15 @@
 DROP TABLE IF EXISTS public.card;
 DROP TABLE IF EXISTS public.favorite;
 DROP TABLE IF EXISTS public.game;
+<<<<<<< HEAD
 DROP TABLE IF EXISTS public.player;
 DROP TABLE IF EXISTS public.organisation;
 DROP TABLE IF EXISTS public.organisation_players;
 
 
+=======
+DROP TABLE IF EXISTS public.organisation;
+>>>>>>> origin/develop
 
 create table public.card
 (
@@ -71,6 +75,7 @@ create table public.player
 alter table public.player
     owner to postgres;
 
+<<<<<<< HEAD
 create table public.organisation_players
 (
     organisation_id bigint not null
@@ -99,6 +104,8 @@ create table public.player_player_organisations
 alter table public.player_player_organisations
     owner to postgres;
 
+=======
+>>>>>>> origin/develop
 
 
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (0, 'Les pneus', true, 'Michelin') ON CONFLICT DO NOTHING;

@@ -1,0 +1,61 @@
+<div class="creation-general">
+  <h1 class="title">Modifier une organisation</h1>
+  <div class="colonnes">
+    <div class="col1">
+      <p-inputGroup class="input">
+        <p-inputGroupAddon>
+          <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <input
+          pInputText
+          [(ngModel)]="name"
+          placeholder="Nom de l'organisation"
+        />
+      </p-inputGroup>
+
+      <div class="privatisation">
+        <app-radio (visibilite)="childData($event)" class="radios"></app-radio>
+      </div>
+
+      <textarea
+        class="description"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [(ngModel)]="description"
+        placeholder="Description"
+      ></textarea>
+
+      <div class="boutons">
+        <p-button
+          [style]="{ color:'#000000', margin: '5vh' }"
+          label="Retour"
+          [link]="true"
+          routerLink=".."
+        ></p-button>
+
+        <app-toast
+          [nameData]="name"
+          [descriptionData]="description"
+          [privatisationData]="visibilite"
+          [labelBouton]="bouton_label"
+          class="creation"
+        ></app-toast>
+      </div>
+    </div>
+
+    <div class="col2">
+      <h3>Membres</h3>
+
+      <!-- listes des membres dans tableau -->
+
+      <app-members class="liste"> </app-members>
+
+      <p-button
+        [style]="{ background: '#FF978A', border: 'none' }"
+        label="Ajouter des membres"
+      >
+      </p-button>
+    </div>
+  </div>
+</div>

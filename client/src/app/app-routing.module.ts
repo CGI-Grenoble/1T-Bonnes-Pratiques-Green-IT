@@ -8,26 +8,32 @@ import {AdminComponent} from "./admin/admin.component";
 import {AuthGuard} from "./auth.guard";
 import {UserComponent} from "./user/user.component";
 import {AccessDeniedComponent} from "./access-denied/access-denied.component";
+import { SalonComponent } from './salon/salon.component';
+import { OrgEditComponent } from './org-edit/org-edit.component';
 
 const routes: Routes = [
     {path: 'org',
     component: OrgComponent, // this is the component with the <router-outlet> in the template
-    data: { roles: ['user'] }
-    /* children: [
+    data: { roles: ['user'] },
+    children: [
       {
         // path: '', // child route path
         // component: OrgAccueilComponent, // Replace OrgDetailComponent with OrgComponent
         // children: [{
-          path: 'detail', // child route path
+          path: 'detail/:id', // child route path
           component: OrgDetailComponent, // Replace OrgDetailComponent with OrgComponent
-          children: [
-            // {path: 'edit',
-            // component : EditOrgComponent,}
-          ] */
-  
-        // },]
+          
+        },
+      {
+        path: '**',
+        component: OrgDetailComponent
+      },
+      {
+        path: 'edit/:id',
+        component: OrgEditComponent
+      }
+    ]
 
-    // },
     //]
     //   {
     //     path: 'create',
@@ -37,7 +43,7 @@ const routes: Routes = [
     // { path: 'profile',
     // component: ProfileComponent,
     },
-    {
+    /* {
       path: 'org/detail', // child route path
       component: OrgComponent, // Replace OrgDetailComponent with OrgComponent
       children: [
@@ -45,7 +51,7 @@ const routes: Routes = [
         // component : EditOrgComponent,}
       ],
       data: { roles: ['user'] },
-    },
+    }, */
     {
       path: 'a-appliquer-en-priorite', // child route path
       component: BonnesPratiquesComponent, // Replace OrgDetailComponent with OrgComponent
@@ -54,6 +60,15 @@ const routes: Routes = [
         // component : EditOrgComponent,}
       ],
       data: { roles: ['user'] },
+    },
+    { path: 'org/create',
+      component: OrgComponent
+    },
+    { path: 'org/edit',
+      component: OrgComponent
+    },
+    { path: 'join',
+      component: SalonComponent
     },
     { path: '',
     component: BonnesPratiquesComponent,

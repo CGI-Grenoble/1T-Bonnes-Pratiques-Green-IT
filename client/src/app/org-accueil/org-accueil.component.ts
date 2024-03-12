@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,11 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OrgAccueilComponent implements OnInit{
 
-  orgas!: any;
+  @Output() newOrgaEvent = new EventEmitter<string>();
 
+  
+  orgas!: any;
+  orga !: any;
+  
   constructor(private http: HttpClient) { }
   
-
+  onSendOrga() {
+    console.log('book in ChildComponent:', this.orga);
+    this.newOrgaEvent.emit(this.orga);
+  }
+  
   test(){
     const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
       this.orgas = donnees;
