@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class ReglesComponent {
 
-  imageUrl : string = "../../assets/img/rules_card.png";
+  imageUrl : string = "../../assets/img/card_rules.png";
 }
