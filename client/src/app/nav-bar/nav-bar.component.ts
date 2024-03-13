@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {KeycloakService} from "keycloak-angular";
 import { KeycloakCustomProfile } from '../keycloak-user';
 import { MenuItem, MessageService } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
+
 
 interface Language {
   name: string;
@@ -17,7 +19,7 @@ interface Language {
 
 export class NavBarComponent implements OnInit{
 
-  constructor(private readonly keycloak: KeycloakService) {
+  constructor(private readonly keycloak: KeycloakService, private http: HttpClient) {
   }
 
   languages: Language[] | undefined;
@@ -27,14 +29,29 @@ export class NavBarComponent implements OnInit{
   modes : any[] | undefined;
     
   formGroup: FormGroup | undefined;
+
+  idGame !: number;
   
   default : Language = { name: 'Français', code: 'fr' };
 
+
+
+  async linkGame(){
+    const date = new Date();
+    const yes = this.http.get('http://localhost:8081/api/organisations/0').subscribe((donnees) => {
+      const rep = this.http.post('http://localhost:8081/api/games', {date: "13/03/2024 11:03:00", organisation: donnees}).subscribe((yes) => {
+        console.log(yes);
+      });
+    })
+   
+  
+  }
   userName! :string;
+  userId !: string;
  
 
     ngOnInit() {
-        
+      this.linkGame();
       this.languages = [
           { name: 'Français', code: 'fr' },
           { name: 'English', code: 'en' }

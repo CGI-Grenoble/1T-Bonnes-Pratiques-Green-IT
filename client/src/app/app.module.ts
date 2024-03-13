@@ -125,6 +125,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { JouerComponent } from './jouer/jouer.component';
 import { SalonComponent } from './salon/salon.component';
+import { JoinComponent } from './join/join.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -170,7 +171,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     OrgCreateComponent,
     ReglesComponent,
     JouerComponent,
-    SalonComponent
+    SalonComponent,
+    JoinComponent
   ],
   imports: [
     HttpClientModule,

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "${frontend.url}", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RequestMapping("/api/userOrganisations")
 public class UserOrganisationController {
 
@@ -34,8 +33,10 @@ public class UserOrganisationController {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
             return existingAttributes.get("organisation");
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cet utilisateur n'existe pas: " + userId, e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
