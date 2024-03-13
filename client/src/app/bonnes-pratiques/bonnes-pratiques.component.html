@@ -5,6 +5,33 @@
 
     <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1em', 'margin-bottom': '1.05em', 'display': 'grid', 'align-items': 'center', 'width':'60vw'}">
         <h2 [style]= "{'margin-top': '0.5rem'}">Mes Bonnes Pratiques</h2>
-        <app-bonnes-pratiques-accueil></app-bonnes-pratiques-accueil>
-    </div>
+        <div id="cards" class=" flex ">
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">    
+                <p-card header="À appliquer en priorité"[style]="{ width: '305px', 'height': '160px'}">
+                    <p>XX cartes</p>
+                    <p-button icon ="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}" [routerLink]="'a-appliquer-en-priorite'"></p-button>
+                </p-card>
+            </div>
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">    
+                <p-card header="Déjà appliquées"[style]="{ width: '305px', 'height': '160px'}">
+                    <p>XX cartes</p>
+                    <p-button icon ="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+                </p-card>
+            </div>
+        </div>
+        <div id="cards" class=" flex ">
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">    
+                <p-card header="Non applicables"[style]="{ width: '305px', 'height': '160px'}">
+                    <p>XX cartes</p>
+                    <p-button icon ="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+                </p-card>
+            </div>
+            <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">    
+                <p-card header="Non rencontrées"[style]="{ width: '305px', 'height': '160px'}">
+                    <p>XX cartes</p>
+                    <p-button icon ="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+                </p-card>
+            </div>
+        </div>
+    </div>  
 </div>
