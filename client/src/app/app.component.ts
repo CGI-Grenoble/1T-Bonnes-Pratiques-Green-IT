@@ -28,5 +28,9 @@ export class AppComponent implements OnInit {
     //   })
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/orgaJoinRequests', {}).subscribe(res => console.log(res))
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/orgaJoinRequests/53/decide', "decline").subscribe(res => console.log(res))
+    this.httpClient.get<{ message: string }>('http://localhost:8081/api/organisations/0', {}).subscribe(
+      res => {
+            this.httpClient.post<{message: string}>('http://localhost:8081/api/games/', res).subscribe(resres => console.log(resres))
+      })
   }
 }
