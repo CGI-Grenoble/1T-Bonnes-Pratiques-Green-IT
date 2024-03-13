@@ -12,11 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(
-        origins = "${frontend.url}",
-        allowedHeaders = "*",
-        methods = {RequestMethod.GET}
-)
 @RequestMapping("/api/organisationUsers")
 public class OrganisationUsersController {
 

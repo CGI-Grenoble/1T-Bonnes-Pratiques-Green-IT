@@ -29,11 +29,14 @@ class SecurityConfig {
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .csrf(Customizer.withDefaults())
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(
                         jwt -> jwt.jwtAuthenticationConverter(customJwtConverter())
                 ));
         return http.build();
     }
+
+
 
     @Bean
     public JwtDecoder jwtDecoder() {

@@ -13,12 +13,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(
-        origins = "${frontend.url}",
-        allowedHeaders = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST}
-
-)
 @RequestMapping("/api/favorites")
 public class FavoriteController {
 
@@ -41,6 +35,11 @@ public class FavoriteController {
         if (favorite.isPresent())
             return new ResponseEntity<>(favorite.get(), HttpStatus.OK);
         return new ResponseEntity<>((Favorite) null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/forUser/{userId}")
+    public List<Favorite> getFavoritesForUser(@PathVariable Long userId) {
+        return favoriteRepository.findByUser(userId);
     }
 
     @PostMapping("")
