@@ -9,5 +9,6 @@
         <app-org-accueil *ngIf="router.url === '/org'"></app-org-accueil>
         <app-org-detail *ngIf="router.url.startsWith('/org/detail')" [show]="true"></app-org-detail> 
         <app-org-edit *ngIf ="router.url.startsWith('/org/edit')"></app-org-edit>
+        <app-org-create *ngIf ="router.url.startsWith('/org/create')"></app-org-create>
     </div>
 </div>
