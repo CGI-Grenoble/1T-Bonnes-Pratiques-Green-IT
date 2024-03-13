@@ -38,12 +38,16 @@ export class NavBarComponent implements OnInit{
 
   async linkGame(){
     const date = new Date();
-    const rep = this.http.post('http://localhost:8081/api/games', date).subscribe((donnees) => {
-      console.log(donnees);
-    });
+    const yes = this.http.get('http://localhost:8081/api/organisations/0').subscribe((donnees) => {
+      const rep = this.http.post('http://localhost:8081/api/games', {date: "13/03/2024 11:03:00", organisation: donnees}).subscribe((yes) => {
+        console.log(yes);
+      });
+    })
+   
   
   }
   userName! :string;
+  userId !: string;
  
 
     ngOnInit() {
