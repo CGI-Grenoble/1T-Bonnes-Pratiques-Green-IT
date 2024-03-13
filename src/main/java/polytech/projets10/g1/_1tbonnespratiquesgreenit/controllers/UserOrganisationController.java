@@ -25,6 +25,11 @@ public class UserOrganisationController {
     @Value("${keycloak.config.realm}")
     private String realm;
 
+    /**
+     * Get all the organisation to which a user belongs
+     * @param userId the user id
+     * @return a list of organisation the user belongs to
+     */
     @GetMapping("/{userId}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     List<String> getUserOrganisations(@PathVariable String userId) {
@@ -40,6 +45,11 @@ public class UserOrganisationController {
         }
     }
 
+    /**
+     * Remove a user from an organisation
+     * @param userId the user ID
+     * @param deleteOrganisation the organisation
+     */
     @PostMapping("/remove/{userId}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     void removeUserOrganisation(@PathVariable String userId, @RequestBody String deleteOrganisation) {
@@ -65,6 +75,11 @@ public class UserOrganisationController {
 
     }
 
+    /**
+     * Add a user in an organisation
+     * @param userId the user ID
+     * @param newOrganisation the organisation
+     */
     @PostMapping("/add/{userId}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     void addUserOrganisations(@PathVariable String userId, @RequestBody String newOrganisation) {

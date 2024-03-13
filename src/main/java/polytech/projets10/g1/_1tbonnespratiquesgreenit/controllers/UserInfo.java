@@ -1,11 +1,23 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.controllers;
 
+/**
+ * User information
+ */
 public class UserInfo {
 
+    /**
+     * Their id
+     */
     private String id;
 
+    /**
+     * Their first name
+     */
     private String firstName;
 
+    /**
+     * Their last name
+     */
     private String lastName;
 
     public UserInfo(String id, String firstName, String lastName) {
