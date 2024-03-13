@@ -25,12 +25,21 @@ public class OrganisationController {
         this.organisationRepository = organisationRepository;
     }
 
+    /**
+     * Get all organisations
+     * @return all the organisations
+     */
     @GetMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public List<Organisation> getAllOrganisations() {
         return organisationRepository.findAll();
     }
 
+    /**
+     * Get an organisation
+     * @param id the organisation ID
+     * @return the organisation
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Organisation> getOrganisation(@PathVariable Long id) {
@@ -40,6 +49,12 @@ public class OrganisationController {
         return new ResponseEntity<>((Organisation) null, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Modify an organisation
+     * @param id the organisation ID
+     * @param organisation the organisation modified
+     * @return the organisation modified
+     */
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Organisation> updateOrganisation(@PathVariable Long id, @RequestBody @Valid Organisation organisation) {
@@ -54,6 +69,13 @@ public class OrganisationController {
         return ResponseEntity.ok().body(res);
     }
 
+    /**
+     * Create an organisation
+     * @param organisation the organisation
+     * @return the organisation created
+     * @throws BadRequestException the organisation already has an ID
+     * @throws URISyntaxException
+     */
     @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<Organisation> createOrganisation(@RequestBody Organisation organisation) throws BadRequestException, URISyntaxException {
@@ -65,6 +87,11 @@ public class OrganisationController {
                 .body(result);
     }
 
+    /**
+     * Delete an organisation
+     * @param id the organisation ID
+     * @return a success response
+     */
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<Void> deleteOrganisation(@PathVariable Long id) {

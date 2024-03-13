@@ -26,6 +26,11 @@ public class OrganisationUsersController {
     @Value("${keycloak.config.realm}")
     private String realm;
 
+    /**
+     * Get all users for an organisation
+     * @param orgaName the organisation name
+     * @return a list of user information who are in the organisation
+     */
     @GetMapping("/{orgaName}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     List<UserInfo> getUserOrganisations(@PathVariable String orgaName) {

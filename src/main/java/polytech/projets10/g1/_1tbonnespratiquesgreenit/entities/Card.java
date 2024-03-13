@@ -2,6 +2,9 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
 
+/**
+ * A playing card
+ */
 @Entity
 public class Card {
     @Id
@@ -10,38 +13,62 @@ public class Card {
     private Long id;
 
     /**
-     * "Sensibilisation" for "sensibilisation" cards
-     * title for "expert" cards
-     * title for "formation" cards
-     * "Mauvaise pratique" for "mauvaise pratique" cards
+     * "Sensibilisation" / "Formation" / "Expert" / "Mauvaise pratique" / "XXKg"
      */
     @Column(name = "type", nullable = false)
     private String type;
 
+    /**
+     * Title of the card
+     */
     @Column(name = "title", nullable = false)
     private String title;
 
+    /**
+     * Card text
+     */
     @Column(name = "description", nullable = false, columnDefinition = "varchar(1000)")
     private String description;
 
+    /**
+     * Link for formation cards
+     */
     @Column(name = "link")
     private String link;
 
+    /**
+     * Actor of the practice
+     */
     @Column(name = "actor")
     private String actor;
 
+    /**
+     * True if practice allows network gain
+     */
     @Column(name = "network_gain")
     private boolean network_gain;
 
+    /**
+     * True if practice allows memory gain
+     */
     @Column(name = "memory_gain")
     private boolean memory_gain;
 
+    /**
+     * True if practice allows CPU gain
+     */
     @Column(name = "CPU_gain")
     private boolean CPU_gain;
 
+    /**
+     * True if practice allows storage gain
+     */
     @Column(name = "storage_gain")
     private boolean storage_gain;
 
+    /**
+     * Difficulty of the practice
+     */
     @Column(name = "difficulty")
     private int difficulty;
 

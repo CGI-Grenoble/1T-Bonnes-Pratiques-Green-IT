@@ -25,12 +25,21 @@ public class FavoriteController {
         this.favoriteRepository = favoriteRepository;
     }
 
+    /**
+     * Get all favorites
+     * @return all the favorites
+     */
     @GetMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public List<Favorite> getAllFavorites() {
         return favoriteRepository.findAll();
     }
 
+    /**
+     * Get one favorite
+     * @param id the favorite id
+     * @return the favorite
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Favorite> getFavorite(@PathVariable Long id) {
@@ -40,6 +49,12 @@ public class FavoriteController {
         return new ResponseEntity<>((Favorite) null, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Modify a favorite
+     * @param id the favorite id
+     * @param favorite the favorite modified
+     * @return the favorite modified
+     */
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Favorite> updateFavorite(@PathVariable Long id, @RequestBody @Valid Favorite favorite) {
@@ -54,11 +69,23 @@ public class FavoriteController {
         return ResponseEntity.ok().body(res);
     }
 
+    /**
+     * Get all favorites for a user
+     * @param userId the user ID
+     * @return the user favorites
+     */
     @GetMapping("/forUser/{userId}")
     public List<Favorite> getFavoritesForUser(@PathVariable Long userId) {
         return favoriteRepository.findByUser(userId);
     }
 
+    /**
+     * Add a favorite
+     * @param favorite the favorite to be added
+     * @return the favorite added
+     * @throws BadRequestException if favorite already has an ID
+     * @throws URISyntaxException
+     */
     @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite) throws BadRequestException, URISyntaxException {
@@ -70,6 +97,11 @@ public class FavoriteController {
                 .body(result);
     }
 
+    /**
+     * Delete a favorite
+     * @param id the favorite to delete
+     * @return a success response
+     */
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<Void> deleteFavorite(@PathVariable Long id) {

@@ -40,12 +40,21 @@ public class OrgaJoinRequestController {
         this.orgaJoinRequestRepository = orgaJoinRequestRepository;
     }
 
+    /**
+     * Get all join requests
+     * @return all join requests
+     */
     @GetMapping("")
     @PreAuthorize("hasAnyAuthority('ROLE_org-admin')")
     public List<OrgaJoinRequest> getAllJoinRequests() {
         return orgaJoinRequestRepository.findAll();
     }
 
+    /**
+     * Get a join request
+     * @param id the join request ID
+     * @return the join request
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<OrgaJoinRequest> getOrgaJoinRidequest(@PathVariable Long id) {
@@ -55,6 +64,12 @@ public class OrgaJoinRequestController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Modify a join request
+     * @param id the request ID
+     * @param joinRequest the request modified
+     * @return the request modified
+     */
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<OrgaJoinRequest> updateJoinRequest(@PathVariable Long id, @RequestBody @Valid OrgaJoinRequest joinRequest) {
@@ -69,6 +84,11 @@ public class OrgaJoinRequestController {
         return ResponseEntity.ok().body(res);
     }
 
+    /**
+     * Get all join requests for an organisation
+     * @param orgaId the organisation ID
+     * @return all the join requests for this organisation
+     */
     @GetMapping("/forOrga/{orgaId}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public List<OrgaJoinRequest> getJoinRequestsForOrga(@PathVariable Long orgaId) {
@@ -83,6 +103,11 @@ public class OrgaJoinRequestController {
         return requests;
     }
 
+    /**
+     * Accept of decline a request from a user
+     * @param requestId the request id
+     * @param decision the decision either "accept" or "decline"
+     */
     @PostMapping("/{requestId}/decide")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public void decideJoinRequest(@PathVariable Long requestId, @RequestBody String decision) {
@@ -121,6 +146,13 @@ public class OrgaJoinRequestController {
         this.orgaJoinRequestRepository.delete(request);
     }
 
+    /**
+     * Create an organisation join request
+     * @param joinRequest the join request
+     * @return the join request
+     * @throws BadRequestException the request already has an ID
+     * @throws URISyntaxException
+     */
     @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<OrgaJoinRequest> createOrgaJoinRequest(@RequestBody OrgaJoinRequest joinRequest) throws BadRequestException, URISyntaxException {
@@ -154,6 +186,11 @@ public class OrgaJoinRequestController {
                 .body(result);
     }
 
+    /**
+     * Delete a join request
+     * @param id the join request ID
+     * @return a success response
+     */
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<Void> deleteJoinRequest(@PathVariable Long id) {

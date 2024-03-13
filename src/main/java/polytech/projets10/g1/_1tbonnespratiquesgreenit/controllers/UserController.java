@@ -21,6 +21,11 @@ public class UserController {
     @Value("${keycloak.config.realm}")
     private String realm;
 
+    /**
+     * Get user information (name)
+     * @param id the user id
+     * @return user first name and last name
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public UserInfo getCard(@PathVariable String id) {
