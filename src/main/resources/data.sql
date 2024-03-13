@@ -63,6 +63,50 @@ ALTER TABLE organisation
 alter table public.organisation
     owner to postgres;
 
+<<<<<<< HEAD
+create table public.player
+(
+    id bigint not null
+        primary key
+);
+
+alter table public.player
+    owner to postgres;
+
+<<<<<<< HEAD
+create table public.organisation_players
+(
+    organisation_id bigint not null
+        constraint fkc7iica9k4uddcjnr7jfgs2ywk
+            references public.organisation,
+    players_id      bigint not null
+        constraint fk6uber8vyjyr55gt3maveeutsr
+            references public.player,
+    primary key (organisation_id, players_id)
+);
+
+alter table public.organisation_players
+    owner to postgres;
+
+create table public.player_player_organisations
+(
+    player_id               bigint not null
+        constraint fkpov80md4vro2d0ire6x3jbkyt
+            references public.player,
+    player_organisations_id bigint not null
+        constraint fkghchsrb96bytq2y1lra1ht5f5
+            references public.organisation,
+    primary key (player_id, player_organisations_id)
+);
+
+alter table public.player_player_organisations
+    owner to postgres;
+
+=======
+>>>>>>> origin/develop
+
+=======
+>>>>>>> develop
 
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (0, 'Les pneus', true, 'Michelin') ON CONFLICT DO NOTHING;
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (1, 'La électricité', false, 'Schneider Electric') ON CONFLICT DO NOTHING;

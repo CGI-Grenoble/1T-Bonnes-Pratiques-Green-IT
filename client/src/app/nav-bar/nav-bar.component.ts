@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {KeycloakService} from "keycloak-angular";
 import { KeycloakCustomProfile } from '../keycloak-user';
+import { MenuItem, MessageService } from 'primeng/api';
 
 interface Language {
   name: string;
@@ -20,6 +21,10 @@ export class NavBarComponent implements OnInit{
   }
 
   languages: Language[] | undefined;
+
+  items: MenuItem[] | undefined;
+
+  modes : any[] | undefined;
     
   formGroup: FormGroup | undefined;
   
@@ -34,6 +39,22 @@ export class NavBarComponent implements OnInit{
           { name: 'Français', code: 'fr' },
           { name: 'English', code: 'en' }
       ];
+
+      this.modes = [
+        { name: 'Rejoindre', code: 'mode1' },
+        { name: 'Créer', code: 'mode2' }
+      ]
+
+      this.items = [
+        {
+          label: 'Rejoindre',
+          routerLink: '/join'
+      },
+      {
+          label: 'Créer',
+          routerLink: '/join'
+      }
+      ]
 
       this.formGroup = new FormGroup({
           selectedLanguage: new FormControl<Language | null>(null)
