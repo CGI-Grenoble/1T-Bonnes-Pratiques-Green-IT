@@ -52,7 +52,7 @@ public class OrgaJoinRequestController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
-    public ResponseEntity<OrgaJoinRequest> getOrgaJoinRequest(@PathVariable Long id) {
+    public ResponseEntity<OrgaJoinRequest> getOrgaJoinRidequest(@PathVariable Long id) {
         var joinRequest = orgaJoinRequestRepository.findById(id);
         if (joinRequest.isPresent())
             return new ResponseEntity<>(joinRequest.get(), HttpStatus.OK);
@@ -62,7 +62,15 @@ public class OrgaJoinRequestController {
     @GetMapping("/forOrga/{orgaId}")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public List<OrgaJoinRequest> getJoinRequestsForOrga(@PathVariable Long orgaId) {
-        return orgaJoinRequestRepository.findByOrga(orgaId);
+         List<OrgaJoinRequest> requests =  orgaJoinRequestRepository.findByOrga(orgaId);
+
+        for(var request: requests) {
+            UserRepresentation user = keycloak.realm(this.realm).users().get(request.getUser_id()).toRepresentation();
+            UserInfo info = new UserInfo(request.getUser_id(), user.getFirstName(), user.getLastName());
+            request.setUserInfo(info);
+        }
+        
+        return requests;
     }
 
     @PostMapping("/{requestId}/decide")

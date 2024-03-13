@@ -27,6 +27,5 @@ public class UserController {
         UserRepresentation user = keycloak.realm(this.realm).users().get(id).toRepresentation();
 
         return new UserInfo(id, user.getFirstName(), user.getLastName());
-
     }
 }
