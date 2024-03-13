@@ -55,7 +55,7 @@ public class GameController {
 
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Organisation organisation) throws BadRequestException, URISyntaxException {
         Game game = new Game();

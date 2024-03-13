@@ -20,6 +20,6 @@ public class WebConfig implements WebMvcConfigurer {
         //TODO Fix CORS origin (frontend url does not work)
         CorsRegistration registration = registry.addMapping("/**");
         registration.allowedHeaders("*");
-        registration.allowedMethods("GET", "POST");
+        registration.allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }

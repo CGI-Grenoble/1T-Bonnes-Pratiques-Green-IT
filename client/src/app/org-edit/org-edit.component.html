@@ -28,11 +28,15 @@
 
       <div class="boutons">
         <p-button
-          [style]="{ color:'#000000', margin: '5vh' }"
+          [style]="{ color: '#000000', margin: '5vh' }"
           label="Retour"
           [link]="true"
           routerLink=".."
+         
         ></p-button>
+
+        <!-- routerLink=".." -->
+        <!-- (click)="demandeRejoindre()" -->
 
         <app-toast
           [nameData]="name"
@@ -45,15 +49,16 @@
     </div>
 
     <div class="col2">
-      <h3>Membres</h3>
+      <h3>En attente</h3>
 
       <!-- listes des membres dans tableau -->
 
       <app-members class="liste"> </app-members>
 
       <p-button
-        [style]="{ background: '#FF978A', border: 'none' }"
+        [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
         label="Ajouter des membres"
+        (click)="onClick(true)"
       >
       </p-button>
     </div>

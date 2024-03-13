@@ -1,12 +1,15 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.controllers;
 
 
+import org.apache.coyote.BadRequestException;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,9 @@ public class OrganisationUsersController {
     @GetMapping("/{orgaName}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     List<UserInfo> getUserOrganisations(@PathVariable String orgaName) {
-        List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("organisation:" + orgaName);
+        System.out.println("SALUT");
+        try {
+         List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("organisation:" + orgaName);
 
         List<UserInfo> res = new ArrayList<>();
 
@@ -33,5 +38,8 @@ public class OrganisationUsersController {
         }
 
         return res;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }
     }
 }
