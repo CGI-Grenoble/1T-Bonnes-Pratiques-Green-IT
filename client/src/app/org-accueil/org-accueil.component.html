@@ -1,9 +1,24 @@
-
-<div id="cards" class=" grid " [style]= "{ 'display': 'grid','grid-template-columns': 'repeat(2, 1fr)'} ">
-    <div *ngFor="let orga of orgas">
-        <app-card [title]="orga['name']" [text] = "'Vous êtes membre de cette organisation'" [admin]="false" [type]="false" [id]="orga['id']" [styleCard]="{ width: '305px'}"></app-card>
-        <app-org-detail [org]="orga['name']" [show]="false"></app-org-detail>
-    </div>
+<div
+  id="cards"
+  class="orgas"
+>
+  <div  *ngFor="let orga of orgas">
+    <app-card
+      [title]="orga['name']"
+      [text]="'Vous êtes membre de cette organisation'"
+      [admin]="false"
+      [type]="false"
+      [id]="orga['id']"
+    ></app-card>
+  </div>
 </div>
-<p-button [style]="{'margin-top':'3.5rem','margin-bottom':'0.5rem', 'color':'#650A21'}" icon ="pi pi-plus-circle" label ="Créer une organisation" [link]="true" routerLink ="create"></p-button>
 
+<p-button
+  [style]="{
+    color: '#650A21'
+  }"
+  icon="pi pi-plus-circle"
+  label="Créer une organisation"
+  [link]="true"
+  routerLink="create"
+></p-button>
