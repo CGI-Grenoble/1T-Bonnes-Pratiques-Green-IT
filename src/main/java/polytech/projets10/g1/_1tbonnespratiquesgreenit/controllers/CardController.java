@@ -37,7 +37,7 @@ public class CardController {
 
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Card> createCard(@RequestBody Card card) throws BadRequestException, URISyntaxException {
         if (card.getId() != null)

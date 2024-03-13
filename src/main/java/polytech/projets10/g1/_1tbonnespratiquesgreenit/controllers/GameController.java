@@ -53,7 +53,7 @@ public class GameController {
 
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Game game) throws BadRequestException, URISyntaxException {
         if (game.getId() != null) throw new BadRequestException("A new game cannot already have an ID");

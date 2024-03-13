@@ -42,7 +42,7 @@ public class FavoriteController {
         return favoriteRepository.findByUser(userId);
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite) throws BadRequestException, URISyntaxException {
         if (favorite.getId() != null)
