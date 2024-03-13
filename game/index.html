@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <title>Phaser - Template</title>
+  </head>
+
+  <body>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+    <script>
+      class Card {
+        constructor(scene) {
+          this.render = (x, y, sprite) => {
+            let card = scene.add
+              .image(x, y, sprite)
+              .setScale(0.3, 0.3)
+              .setInteractive();
+            scene.input.setDraggable(card);
+            return card;
+          };
+        }
+      }
+
+      class Zone {
+        constructor(scene) {
+          this.renderZone = () => {
+            let dropZone = scene.add
+              .zone(700, 375, 900, 250)
+              .setRectangleDropZone(900, 250);
+            dropZone.setData({ cards: 0 });
+            return dropZone;
+          };
+          this.renderOutline = (dropZone) => {
+            let dropZoneOutline = scene.add.graphics();
+            dropZoneOutline.lineStyle(4, 0xffffff);
+            dropZoneOutline.strokeRect(
+              dropZone.x - dropZone.input.hitArea.width / 2,
+              dropZone.y - dropZone.input.hitArea.height / 2,
+              dropZone.input.hitArea.width,
+              dropZone.input.hitArea.height
+            );
+          };
+        }
+      }
+
+      class Game extends Phaser.Scene {
+        constructor() {
+          super("game");
+        }
+
+        preload() {
+          this.load.image("background", "src/assets/background.jpg");
+          this.load.image("card", "src/assets/carte.png");
+        }
+
+        create() {
+          this.add.image(640, 390, "background");
+
+          this.dealCards = () => {
+            for (let i = 0; i < 7; i++) {
+              let card = new Card(this);
+              card.render(475 + i * 100, 650, "card");
+            }
+          };
+
+          this.zone = new Zone(this);
+          this.dropZone = this.zone.renderZone();
+          this.outline = this.zone.renderOutline(this.dropZone);
+
+          this.totalText = this.add
+            .text(75, 300, ["TOTAL : 0 KG"])
+            .setFontSize(17)
+            .setFontFamily("Arial")
+            .setColor("#ffffff")
+            .setInteractive();
+
+          this.dealText = this.add
+            .text(75, 350, ["DEAL CARDS"])
+            .setFontSize(17)
+            .setFontFamily("Arial")
+            .setColor("#ffffff")
+            .setInteractive();
+
+          this.dealText.on("pointerdown", () => {
+            this.dealCards();
+          });
+
+          this.dealText.on("pointerover", () => {
+            this.dealText.setColor("#ff69b4");
+          });
+
+          this.dealText.on("pointerout", () => {
+            this.dealText.setColor("#ffffff");
+          });
+
+          this.input.on("drag", function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+          });
+
+          this.input.on("dragend", function (pointer, gameObject, dropped) {
+            if (!dropped) {
+              gameObject.x = gameObject.input.dragStartX;
+              gameObject.y = gameObject.input.dragStartY;
+            }
+          });
+
+          this.input.on("drop", (pointer, gameObject, dropZone) => {
+            dropZone.data.values.cards++;
+            gameObject.x = dropZone.x - 350 + dropZone.data.values.cards * 50;
+            gameObject.y = dropZone.y;
+            let totalWeight = dropZone.data.values.cards * 75;
+            this.totalText.setText("TOTAL : " + totalWeight + " KG");
+            gameObject.disableInteractive();
+          });
+        }
+
+        update() {}
+      }
+
+      const config = {
+        type: Phaser.AUTO,
+        width: 1280,
+        height: 780,
+        scene: [Game],
+      };
+
+      const game = new Phaser.Game(config);
+    </script>
+  </body>
+</html>
