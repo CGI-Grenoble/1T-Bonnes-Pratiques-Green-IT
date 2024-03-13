@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toast',
@@ -8,24 +9,31 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class ToastComponent {
-  @Input ('nameData') public name! : string;
-  @Input ('descriptionData') public description! : string;
-  @Input ('privatisationData') public visibilite! : string;
-  @Input ('labelBouton') public label! : string;
+  @Input('nameData') public name!: string;
+  @Input('descriptionData') public description!: string;
+  @Input('privatisationData') public visibilite!: boolean;
+  @Input('labelBouton') public label!: string;
+  @Input('createOrga') submitFunction: Function | undefined;
 
   constructor(private messageService: MessageService) {}
 
   submit() {
-   console.log("nom : ", this.name);
-   console.log("description : ", this.description);
-   console.log("prive : ", this.visibilite);
+    console.log('nom : ', this.name);
+    console.log('description : ', this.description);
+    console.log('prive : ', this.visibilite);
 
+    if (this.submitFunction) {
+      console.log('submitFunction');
+      this.submitFunction(this.name, this.visibilite, this.description);
+    }
 
+    
 
     this.messageService.add({
       severity: 'info',
       summary: 'Success',
       detail: 'Message Content',
     });
+  
   }
 }

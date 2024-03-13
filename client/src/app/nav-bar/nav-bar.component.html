@@ -1,39 +1,68 @@
 <div class="nav">
-    <p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{'border-radius': '0rem', 'background-image': 'linear-gradient(to right, #650A21, #650A21)', 'border':'0px'  }">
-        <ng-template pTemplate="start">
-            <div class="flex flex-wrap align-items-center gap-3">
-                <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" />
-                <p-button label="Accueil" icon="pi pi-home" [style]="{'background':'#650A21', 'border':'none'}" routerLink="/"> </p-button>
-                <!-- <span class="pi pi-desktop" [style]="{'color': 'white'}"></span>
-                <form [style]="{'color': 'white'}">
-                    <p-dropdown  formControlName="selectedLanguage"[options]="modes" optionLabel="name" placeholder="Jouer"  [style]="{'background-color': 'transparent', 'border-color': 'transparent'}"></p-dropdown>
-                </form> -->
-                <div [style]="{'background':'#650A21', 'border':'none'}"  class="card flex justify-content-center">
-                    <!-- <p-toast></p-toast> -->
-                    <p-menu #menu [model]="items" [popup]="true"></p-menu>
-                    <p-button [style]="{'background':'#650A21', 'border':'none'}" pButton type="button" (click)="menu.toggle($event)" icon="pi pi-desktop" label="Jouer"></p-button>
-                </div>
-                <p-button label="Comment jouer ?" icon="pi pi-question-circle" [style]="{'background':'#650A21', 'border':'none'}"> </p-button>  
-            </div>
-        </ng-template>
-        <ng-template pTemplate="center">
-            <!-- <div class="flex flex-wrap align-items-center gap-3">
-                <p-button label="Accueil" icon="pi pi-home" >
-                </p-button>
-                <p-button label ="Jouer" icon="pi pi-desktop"></p-button>
-                <p-button label="Comment jouer ?" icon="pi pi-question-circle"> 
-                </p-button>
-            </div> -->
-        </ng-template>
-        <ng-template pTemplate="end">
-            <div class="flex align-items-center gap-2">
-                <span class="pi pi-globe" [style]="{'color': 'white'}"></span>
-                <form [style]="{'color': 'white'}">
-                    <p-dropdown  formControlName="selectedLanguage" [options]="languages" optionLabel="name"  [style]="{'background-color': 'transparent', 'border-color': 'transparent'}"></p-dropdown>
-                </form>
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
-                <span class="font-bold text-bluegray-50">Eloi CHARRA</span>
-            </div>
-        </ng-template>
-    </p-toolbar>
-    </div>
+  <p-toolbar
+    styleClass="bg-gray-900 shadow-2"
+    [style]="{
+      'border-radius': '0rem',
+      'background-image': 'linear-gradient(to right, #650A21, #650A21)',
+      border: '0px'
+    }"
+  >
+    <ng-template pTemplate="start">
+      <div class="flex flex-wrap align-items-center gap-3">
+        <p-avatar image="../../assets/img/cgi_logo.png" shape="circle" />
+        <p-button
+          label="Accueil"
+          icon="pi pi-home"
+          [style]="{ background: '#650A21', border: 'none' }"
+          routerLink="/org"
+        >
+        </p-button>
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <p-button
+          type="button"
+          (click)="menu.toggle($event)"
+          icon="pi pi-desktop"
+          label="Jouer"
+          [style]="{ background: '#650A21', border: 'none' }"
+        ></p-button>
+        <p-button
+          label="Comment jouer ?"
+          icon="pi pi-question-circle"
+          [style]="{ background: '#650A21', border: 'none' }"
+          routerLink="/regles"
+        >
+        </p-button>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <span class="pi pi-globe" [style]="{ color: 'white' }"></span>
+        <form [style]="{ color: 'white' }">
+          <p-dropdown
+            formControlName="selectedLanguage"
+            [options]="languages"
+            optionLabel="name"
+            [style]="{
+              'background-color': 'transparent',
+              'border-color': 'transparent'
+            }"
+          ></p-dropdown>
+        </form>
+
+        <span class="font-bold text-bluegray-50" icon="pi pi-user">{{
+          this.userName
+        }}</span>
+        <p-avatar image="../../assets/img/avatar.jpg" shape="circle" />
+
+        <p-button
+          label="Deconnexion"
+          icon="pi pi-sign-out"
+          (click)="logout()"
+          [style]="{ background: '#650A21', border: 'none' }"
+        >
+        </p-button>
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>

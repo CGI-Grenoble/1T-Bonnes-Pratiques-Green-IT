@@ -28,7 +28,6 @@ import { BonnesPratiquesAccueilComponent } from './bonnes-pratiques-accueil/bonn
 import { OrgBoutonComponent } from './org-bouton/org-bouton.component';
 import { OrgAccueilComponent } from './org-accueil/org-accueil.component';
 import { CommonModule } from '@angular/common';
-import { EditOrgaComponent } from './edit-orga/edit-orga.component';
 import { ToastComponent } from './toast/toast.component';
 import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
@@ -55,7 +54,6 @@ import { DockModule } from 'primeng/dock';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EditorModule } from 'primeng/editor';
-import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
 import { GalleriaModule } from 'primeng/galleria';
 import { InplaceModule } from 'primeng/inplace';
@@ -82,7 +80,6 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ScrollerModule } from 'primeng/scroller';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
@@ -112,16 +109,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RippleModule } from 'primeng/ripple';
 import { StyleClassModule } from 'primeng/styleclass';
 import { MessageService } from 'primeng/api';
-
-/* import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarHarness} from '@angular/material/toolbar/testing'; 
- */
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient} from "@angular/common/http";
 import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import { AdminComponent } from './admin/admin.component';
@@ -131,6 +118,11 @@ import { environment } from '../environments/environment';
 import { CardComponent } from './card/card.component';
 import { OrgEditComponent } from './org-edit/org-edit.component';
 import { MembersComponent } from './members/members.component';
+import { OrgCreateComponent } from './org-create/org-create.component';
+import { ReglesComponent } from './regles/regles.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 import { JouerComponent } from './jouer/jouer.component';
 import { SalonComponent } from './salon/salon.component';
 
@@ -168,7 +160,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     OrgBoutonComponent,
     OrgAccueilComponent,
     RadioComponent,
-    EditOrgaComponent,
     ToastComponent,
     AdminComponent,
     UserComponent,
@@ -176,8 +167,10 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CardComponent,
     OrgEditComponent,
     MembersComponent,
+    OrgCreateComponent,
+    ReglesComponent,
     JouerComponent,
-    SalonComponent,
+    SalonComponent
   ],
   imports: [
     HttpClientModule,
@@ -203,6 +196,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ReactiveFormsModule,
     KeycloakAngularModule,
     DataViewModule,
+    FieldsetModule,
+    ScrollPanelModule,
     MenuModule,
     ToastModule,
     AccordionModule,

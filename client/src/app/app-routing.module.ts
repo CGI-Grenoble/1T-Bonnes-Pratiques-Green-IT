@@ -8,6 +8,7 @@ import {AdminComponent} from "./admin/admin.component";
 import {AuthGuard} from "./auth.guard";
 import {UserComponent} from "./user/user.component";
 import {AccessDeniedComponent} from "./access-denied/access-denied.component";
+import { ReglesComponent } from './regles/regles.component';
 import { SalonComponent } from './salon/salon.component';
 import { OrgEditComponent } from './org-edit/org-edit.component';
 
@@ -79,6 +80,10 @@ const routes: Routes = [
     ],
     data: { roles: ['user'] }
     },
+    {
+      path: 'regles',
+      component: ReglesComponent
+    }
   
 ];
 

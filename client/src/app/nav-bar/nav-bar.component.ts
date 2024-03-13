@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import {KeycloakService} from "keycloak-angular";
+import { KeycloakCustomProfile } from '../keycloak-user';
 import { MenuItem, MessageService } from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,6 +19,9 @@ interface Language {
 
 export class NavBarComponent implements OnInit{
 
+  constructor(private readonly keycloak: KeycloakService, private http: HttpClient) {
+  }
+
   languages: Language[] | undefined;
 
   items: MenuItem[] | undefined;
@@ -29,7 +34,7 @@ export class NavBarComponent implements OnInit{
   
   default : Language = { name: 'Français', code: 'fr' };
 
-  constructor(private http: HttpClient) { }
+
 
   async linkGame(){
     const date = new Date();
@@ -38,6 +43,8 @@ export class NavBarComponent implements OnInit{
     });
   
   }
+  userName! :string;
+ 
 
     ngOnInit() {
       this.linkGame();
@@ -65,5 +72,19 @@ export class NavBarComponent implements OnInit{
       this.formGroup = new FormGroup({
           selectedLanguage: new FormControl<Language | null>(null)
       });  
+
+      this.getUserName();
     }
+
+    async logout() {
+      await this.keycloak.logout(window.location.origin)
+    }
+
+    async getUserName(){
+      let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
+      this.userName = userData.firstName + " " + userData.lastName;
+    }
+
+   
+  
 }

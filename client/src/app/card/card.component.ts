@@ -13,11 +13,12 @@ export class CardComponent {
   @Input() admin!: boolean;
   @Input() type!: boolean; /*true if bonnes pratiques */
   @Input() id!: any;
-  link: any;
+  linkDetails: any;
+  linkEdit: any;
 
   async ngOnInit() {
-    this.link = "detail/" + this.id
-    console.log(this.link)
+    this.linkDetails = "detail/" + this.id;
+    this.linkEdit = "edit/" + this.id;
   
   }
 }
