@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Game;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.GameStatus;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Organisation;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.repositories.GameRepository;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -55,8 +57,11 @@ public class GameController {
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
-    public ResponseEntity<Game> createGame(@RequestBody Game game) throws BadRequestException, URISyntaxException {
-        if (game.getId() != null) throw new BadRequestException("A new game cannot already have an ID");
+    public ResponseEntity<Game> createGame(@RequestBody Organisation organisation) throws BadRequestException, URISyntaxException {
+        Game game = new Game();
+        game.setDate(new Date());
+        game.setStatus(GameStatus.WAITING_TO_START);
+        game.setOrganisation(organisation);
         var result = gameRepository.save(game);
         return ResponseEntity.created(new URI("/api/games/" + result.getId())).body(result);
     }
