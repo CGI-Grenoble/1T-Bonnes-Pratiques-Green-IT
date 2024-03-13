@@ -20,10 +20,6 @@ public class Organisation {
 
     @Column(name = "is_public", nullable = false)
     private boolean is_public;
-
-    @ManyToMany
-    Set<Player> players;
-
     public Long getId() {
         return id;
     }

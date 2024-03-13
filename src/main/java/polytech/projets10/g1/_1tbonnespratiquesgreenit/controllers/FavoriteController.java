@@ -40,6 +40,11 @@ public class FavoriteController {
         return new ResponseEntity<>((Favorite) null, HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/forUser/{userId}")
+    public List<Favorite> getFavoritesForUser(@PathVariable Long userId) {
+        return favoriteRepository.findByUser(userId);
+    }
+
     @PostMapping("")
     public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite) throws BadRequestException, URISyntaxException {
         if (favorite.getId() != null)
