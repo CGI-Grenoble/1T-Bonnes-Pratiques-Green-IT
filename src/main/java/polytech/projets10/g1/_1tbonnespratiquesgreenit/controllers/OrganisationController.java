@@ -37,7 +37,7 @@ public class OrganisationController {
         return new ResponseEntity<>((Organisation) null, HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public ResponseEntity<Organisation> createOrganisation(@RequestBody Organisation organisation) throws BadRequestException, URISyntaxException {
         if (organisation.getId() != null)
