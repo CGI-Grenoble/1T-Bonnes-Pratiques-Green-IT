@@ -9,7 +9,7 @@
   >
     <ng-template pTemplate="start">
       <div class="flex flex-wrap align-items-center gap-3">
-        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" />
+        <p-avatar image="../../assets/img/cgi_logo.png" shape="circle" />
         <p-button
           label="Accueil"
           icon="pi pi-home"
@@ -17,7 +17,7 @@
           routerLink="/org"
         >
         </p-button>
-        <p-menu #menu [model]="items" [popup]="true" ></p-menu>
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
         <p-button
           type="button"
           (click)="menu.toggle($event)"
@@ -34,8 +34,7 @@
         </p-button>
       </div>
     </ng-template>
-   
-      
+
     <ng-template pTemplate="end">
       <div class="flex align-items-center gap-2">
         <span class="pi pi-globe" [style]="{ color: 'white' }"></span>
@@ -51,7 +50,11 @@
           ></p-dropdown>
         </form>
 
-        <span class="font-bold text-bluegray-50">{{ this.userName }}</span>
+        <span class="font-bold text-bluegray-50" icon="pi pi-user">{{
+          this.userName
+        }}</span>
+        <p-avatar image="../../assets/img/avatar.jpg" shape="circle" />
+
         <p-button
           label="Deconnexion"
           icon="pi pi-sign-out"
