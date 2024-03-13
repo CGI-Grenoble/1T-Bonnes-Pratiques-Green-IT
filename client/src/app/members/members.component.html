@@ -1,0 +1,45 @@
+<div class="card">
+  <p-dataView #dv [value]="members">
+    <ng-template pTemplate="list" let-products>
+      <div class="grid grid-nogutter">
+        <div class="col-12" *ngFor="let item of members; let first = first">
+          <div
+            class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
+            [ngClass]="{ 'border-top-1 surface-border': !first }"
+          >
+            <div
+              class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+            >
+              <div
+                class="flex flex-column align-items-center sm:align-items-start gap-3"
+              >
+                <div>{{ item.name }}</div>
+                <div class="flex align-items-center gap-3">
+                  <span class="flex align-items-center gap-2"> </span>
+                </div>
+              </div>
+              <div
+                class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
+              >
+                <button
+                  pButton
+                  class="md:align-self-end mb-2 p-button-rounded"
+                  icon="pi pi-times"
+                  (click)="suppr()"
+                  [style]="{ background: '#FF978A', border: 'none', width:'2vw', height:'2vw' }"
+                ></button>
+                <button
+                  pButton
+                  class="md:align-self-end mb-2 p-button-rounded"
+                  icon="pi pi-check"
+                  (click)="suppr()"
+                  [style]="{ background: '#FF978A', border: 'none', width:'2vw', height:'2vw' }"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

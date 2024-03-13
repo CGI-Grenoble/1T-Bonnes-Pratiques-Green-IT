@@ -1,7 +1,11 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.enums.FavoriteType;
 
+/**
+ * A favorite is a good practice that a user can save
+ */
 @Entity
 public class Favorite {
     @Id
@@ -9,14 +13,24 @@ public class Favorite {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    /**
+     * The user owning this favorite
+     */
     @Column(name = "user_id", nullable = false)
     private String user_id;
 
-    @Column(name= "category", nullable = false, columnDefinition = "varchar(255) default 'non rencontrée'")
-    private String category;
+    /**
+     * The category of the favorite
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false, columnDefinition = "varchar(255) default 'UNSEEN'")
+    private FavoriteType category;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    /**
+     * The card
+     */
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "card_id", referencedColumnName = "id", nullable = false)
     private Card card;
 
     public Long getId() {
@@ -43,11 +57,11 @@ public class Favorite {
         this.card = card;
     }
 
-    public String getCategory() {
+    public FavoriteType getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(FavoriteType category) {
         this.category = category;
     }
 }
