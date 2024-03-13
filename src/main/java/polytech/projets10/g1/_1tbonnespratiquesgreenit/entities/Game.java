@@ -53,7 +53,7 @@ public class Game {
         return status;
     }
 
-    public void GameStatus(GameStatus status) {
+    public void setStatus(GameStatus status) {
         this.status = status;
     }
 }
