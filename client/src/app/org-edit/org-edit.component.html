@@ -28,11 +28,13 @@
 
       <div class="boutons">
         <p-button
-          [style]="{ color:'#000000', margin: '5vh' }"
+          [style]="{ color: '#000000', margin: '5vh' }"
           label="Retour"
           [link]="true"
-          routerLink=".."
+          (click)="demandeRejoindre()"
         ></p-button>
+
+        <!-- routerLink=".." -->
 
         <app-toast
           [nameData]="name"
@@ -52,8 +54,9 @@
       <app-members class="liste"> </app-members>
 
       <p-button
-        [style]="{ background: '#FF978A', border: 'none', width:'50%' }"
+        [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
         label="Ajouter des membres"
+        (click)="onClick(true)"
       >
       </p-button>
     </div>
@@ -64,6 +67,5 @@
 
       <app-members class="liste"> </app-members>
     </div>
-
   </div>
 </div>

@@ -103,7 +103,7 @@ public class OrgaJoinRequestController {
         this.orgaJoinRequestRepository.delete(request);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<OrgaJoinRequest> createOrgaJoinRequest(@RequestBody OrgaJoinRequest joinRequest) throws BadRequestException, URISyntaxException {
         if (joinRequest.getId() != null)
