@@ -1,10 +1,13 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Organisation {
 
     @Id
@@ -21,8 +24,16 @@ public class Organisation {
     @Column(name = "is_public", nullable = false)
     private boolean is_public;
 
-    @ManyToMany
-    Set<Player> players;
+    @OneToMany(mappedBy = "organisation")
+    private Set<Game> games;
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 
     public Long getId() {
         return id;

@@ -34,39 +34,34 @@ create table public.favorite
 alter table public.favorite
     owner to postgres;
 
-create table public.game
+CREATE TABLE game
 (
-    id   bigint       not null
-        primary key,
-    date timestamp(6) not null
+    id              BIGINT                      NOT NULL,
+    date            TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    organisation_id BIGINT                      NOT NULL,
+    CONSTRAINT pk_game PRIMARY KEY (id)
 );
+
+ALTER TABLE game
+    ADD CONSTRAINT FK_GAME_ON_ORGANISATION FOREIGN KEY (organisation_id) REFERENCES organisation (id);
 
 alter table public.game
     owner to postgres;
 
-create table public.organisation
+CREATE TABLE organisation
 (
-    id          bigint      not null
-        primary key,
-    description varchar(256),
-    is_public   boolean     not null,
-    name        varchar(50) not null
-        constraint uk_4cj3idr72jukvc49m5dgo9jmo
-            unique
+    id          BIGINT      NOT NULL,
+    name        VARCHAR(50) NOT NULL,
+    description VARCHAR(256),
+    is_public   BOOLEAN     NOT NULL,
+    CONSTRAINT pk_organisation PRIMARY KEY (id)
 );
+
+ALTER TABLE organisation
+    ADD CONSTRAINT uc_organisation_name UNIQUE (name);
 
 alter table public.organisation
     owner to postgres;
-
-create table public.player
-(
-    id bigint not null
-        primary key
-);
-
-alter table public.player
-    owner to postgres;
-
 
 
 INSERT INTO public.organisation (id, description, is_public, name) VALUES (0, 'Les pneus', true, 'Michelin') ON CONFLICT DO NOTHING;
