@@ -1,6 +1,7 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.enums.FavoriteType;
 
 @Entity
 public class Favorite {
@@ -13,7 +14,7 @@ public class Favorite {
     private String user_id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name= "category", nullable = false, columnDefinition = "varchar(255) default 'UNSEEN'")
+    @Column(name = "category", nullable = false, columnDefinition = "varchar(255) default 'UNSEEN'")
     private FavoriteType category;
 
     @ManyToOne(cascade = {CascadeType.MERGE})

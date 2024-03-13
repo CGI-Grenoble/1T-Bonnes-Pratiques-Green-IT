@@ -3,8 +3,6 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 import jakarta.persistence.*;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.controllers.UserInfo;
 
-import java.util.List;
-
 @Entity
 public class OrgaJoinRequest {
 

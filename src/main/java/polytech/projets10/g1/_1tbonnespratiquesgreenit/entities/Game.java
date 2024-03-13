@@ -2,6 +2,7 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.enums.GameStatus;
 
 import java.util.Date;
 

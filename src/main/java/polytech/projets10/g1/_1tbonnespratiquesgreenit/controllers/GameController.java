@@ -1,5 +1,6 @@
 package polytech.projets10.g1._1tbonnespratiquesgreenit.controllers;
 
+import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 import org.apache.coyote.BadRequestException;
 import org.keycloak.admin.client.Keycloak;
@@ -13,16 +14,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Game;
-import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.GameStatus;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.Organisation;
+import polytech.projets10.g1._1tbonnespratiquesgreenit.entities.enums.GameStatus;
 import polytech.projets10.g1._1tbonnespratiquesgreenit.repositories.GameRepository;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/games")
@@ -53,6 +51,20 @@ public class GameController {
         if (game.isPresent()) return ResponseEntity.ok(game.get());
         return ResponseEntity.ok(null);
 
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_user')")
+    public ResponseEntity<Game> updateGame(@PathVariable Long id, @RequestBody @Valid Game game) {
+        if (game.getId() == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid id: null");
+        if (!Objects.equals(id, game.getId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid id: invalid");
+        if (!gameRepository.existsById(id))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
+
+        Game res = gameRepository.save(game);
+        return ResponseEntity.ok().body(res);
     }
 
     @PostMapping("/")
@@ -129,6 +141,15 @@ public class GameController {
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cet utilisateur n'existe pas: " + userId, e);
         }
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_org-admin')")
+    public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
+        gameRepository.deleteById(id);
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 
     private int getPlayersCountInGame(Long gameId) {

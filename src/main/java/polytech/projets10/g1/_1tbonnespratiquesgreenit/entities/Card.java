@@ -2,8 +2,6 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class Card {
     @Id
@@ -20,7 +18,7 @@ public class Card {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name= "title", nullable = false)
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description", nullable = false, columnDefinition = "varchar(1000)")
