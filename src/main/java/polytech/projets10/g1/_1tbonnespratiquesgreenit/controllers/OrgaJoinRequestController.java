@@ -31,8 +31,10 @@ public class OrgaJoinRequestController {
     private static final String acceptRequest = "ACCEPT";
     private static final String declineRequest = "DECLINE";
     private final OrgaJoinRequestRepository orgaJoinRequestRepository;
+
     @Autowired
     Keycloak keycloak;
+
     @Value("${keycloak.config.realm}")
     private String realm;
 

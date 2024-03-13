@@ -11,6 +11,7 @@ import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 import { ReglesComponent } from './regles/regles.component';
 import { SalonComponent } from './salon/salon.component';
 import { OrgEditComponent } from './org-edit/org-edit.component';
+import { JoinComponent } from './join/join.component';
 
 const routes: Routes = [
     {path: 'org',
@@ -69,6 +70,13 @@ const routes: Routes = [
       component: OrgComponent
     },
     { path: 'join',
+      component: JoinComponent,
+      children: [
+        
+      ]
+    },
+    {
+      path: 'join/game/:id',
       component: SalonComponent
     },
     { path: '',
