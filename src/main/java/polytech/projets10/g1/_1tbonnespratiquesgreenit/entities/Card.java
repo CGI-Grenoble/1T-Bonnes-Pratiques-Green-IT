@@ -2,6 +2,9 @@ package polytech.projets10.g1._1tbonnespratiquesgreenit.entities;
 
 import jakarta.persistence.*;
 
+/**
+ * A playing card
+ */
 @Entity
 public class Card {
     @Id
@@ -10,68 +13,64 @@ public class Card {
     private Long id;
 
     /**
-     * "Sensibilisation" for "sensibilisation" cards
-     * title for "expert" cards
-     * title for "formation" cards
-     * "Mauvaise pratique" for "mauvaise pratique" cards
+     * "Sensibilisation" / "Formation" / "Expert" / "Mauvaise pratique" / "XXKg"
+     */
+    @Column(name = "type", nullable = false)
+    private String type;
+
+    /**
+     * Title of the card
      */
     @Column(name = "title", nullable = false)
     private String title;
 
     /**
-     * For "bonnes pratiques" cards
-     * (25, 50, 75, 100, 200)
+     * Card text
      */
-    @Column(name = "value")
-    private Integer value;
-
-    /**
-     * General text
-     */
-    @Column(name = "description", length = 1000)
+    @Column(name = "description", nullable = false, columnDefinition = "varchar(1000)")
     private String description;
 
     /**
-     * For "bonnes pratiques" cards.
-     * Comma separated values among "product owner", "lead tech", "dev"
+     * Link for formation cards
      */
-    @Column(name = "actors")
-    private String actors;
+    @Column(name = "link")
+    private String link;
 
     /**
-     * For "bonnes pratiques" cards.
-     * Comma separated values among "database", "server", "computer", "devices", "internet", "engineering", "log", "planning"
+     * Actor of the practice
      */
-    @Column(name = "components")
-    private String components;
+    @Column(name = "actor")
+    private String actor;
 
     /**
-     * For "bonnes pratiques" cards.
-     * Comma separated values among "cpu", "ram", "disk", "network"
+     * True if practice allows network gain
      */
-    @Column(name = "gain_type")
-    private String gain_type;
+    @Column(name = "network_gain")
+    private boolean network_gain;
 
     /**
-     * For "bonnes pratiques" cards.
+     * True if practice allows memory gain
+     */
+    @Column(name = "memory_gain")
+    private boolean memory_gain;
+
+    /**
+     * True if practice allows CPU gain
+     */
+    @Column(name = "CPU_gain")
+    private boolean CPU_gain;
+
+    /**
+     * True if practice allows storage gain
+     */
+    @Column(name = "storage_gain")
+    private boolean storage_gain;
+
+    /**
+     * Difficulty of the practice
      */
     @Column(name = "difficulty")
-    private Integer difficulty;
-
-    /**
-     * Top left hand corner symbol (card type)
-     */
-    @Column(name = "logo", nullable = false)
-    private String logo;
-
-    @Column(name = "background_image", nullable = false)
-    private String background_image;
-
-    /**
-     * Special title for "formation" cards
-     */
-    @Column(name = "subtitle")
-    private String subtitle;
+    private int difficulty;
 
     public Long getId() {
         return id;
@@ -79,6 +78,14 @@ public class Card {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTitle() {
@@ -89,14 +96,6 @@ public class Card {
         this.title = title;
     }
 
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -105,59 +104,59 @@ public class Card {
         this.description = description;
     }
 
-    public String getActors() {
-        return actors;
+    public String getLink() {
+        return link;
     }
 
-    public void setActors(String actors) {
-        this.actors = actors;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getComponents() {
-        return components;
+    public String getActor() {
+        return actor;
     }
 
-    public void setComponents(String components) {
-        this.components = components;
+    public void setActor(String actor) {
+        this.actor = actor;
     }
 
-    public String getGain_type() {
-        return gain_type;
+    public boolean isNetwork_gain() {
+        return network_gain;
     }
 
-    public void setGain_type(String gain_type) {
-        this.gain_type = gain_type;
+    public void setNetwork_gain(boolean network_gain) {
+        this.network_gain = network_gain;
     }
 
-    public Integer getDifficulty() {
+    public boolean isMemory_gain() {
+        return memory_gain;
+    }
+
+    public void setMemory_gain(boolean memory_gain) {
+        this.memory_gain = memory_gain;
+    }
+
+    public boolean isCPU_gain() {
+        return CPU_gain;
+    }
+
+    public void setCPU_gain(boolean CPU_gain) {
+        this.CPU_gain = CPU_gain;
+    }
+
+    public boolean isStorage_gain() {
+        return storage_gain;
+    }
+
+    public void setStorage_gain(boolean storage_gain) {
+        this.storage_gain = storage_gain;
+    }
+
+    public int getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Integer difficulty) {
+    public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getBackground_image() {
-        return background_image;
-    }
-
-    public void setBackground_image(String background_image) {
-        this.background_image = background_image;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
     }
 }

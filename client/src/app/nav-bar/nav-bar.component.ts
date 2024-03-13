@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import {KeycloakService} from "keycloak-angular";
+import { KeycloakCustomProfile } from '../keycloak-user';
+import { MenuItem, MessageService } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
+
 
 interface Language {
   name: string;
@@ -14,21 +19,76 @@ interface Language {
 
 export class NavBarComponent implements OnInit{
 
+  constructor(private readonly keycloak: KeycloakService, private http: HttpClient) {
+  }
+
   languages: Language[] | undefined;
+
+  items: MenuItem[] | undefined;
+
+  modes : any[] | undefined;
     
   formGroup: FormGroup | undefined;
+
+  idGame !: number;
   
   default : Language = { name: 'Français', code: 'fr' };
 
+
+
+  async linkGame(){
+    const date = new Date();
+    const yes = this.http.get('http://localhost:8081/api/organisations/0').subscribe((donnees) => {
+      const rep = this.http.post('http://localhost:8081/api/games', {date: "13/03/2024 11:03:00", organisation: donnees}).subscribe((yes) => {
+        console.log(yes);
+      });
+    })
+   
+  
+  }
+  userName! :string;
+  userId !: string;
+ 
+
     ngOnInit() {
-        
+      this.linkGame();
       this.languages = [
           { name: 'Français', code: 'fr' },
           { name: 'English', code: 'en' }
       ];
 
+      this.modes = [
+        { name: 'Rejoindre', code: 'mode1' },
+        { name: 'Créer', code: 'mode2' }
+      ]
+
+      this.items = [
+        {
+          label: 'Rejoindre',
+          routerLink: '/join'
+      },
+      {
+          label: 'Créer',
+          routerLink: '/join'
+      }
+      ]
+
       this.formGroup = new FormGroup({
           selectedLanguage: new FormControl<Language | null>(null)
       });  
+
+      this.getUserName();
     }
+
+    async logout() {
+      await this.keycloak.logout(window.location.origin)
+    }
+
+    async getUserName(){
+      let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
+      this.userName = userData.firstName + " " + userData.lastName;
+    }
+
+   
+  
 }

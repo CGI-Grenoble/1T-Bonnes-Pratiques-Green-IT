@@ -1,0 +1,43 @@
+<div class="creation-general">
+  <h1 class="title">Créer une organisation</h1>
+  <div class="colonnes">
+
+  <div class="col1">
+    <p-inputGroup class="nom-form">
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        pInputText
+        [(ngModel)]="name"
+        placeholder="Nom de l'organisation"
+      />
+    </p-inputGroup>
+
+    <app-radio (visibilite)="childData($event)" class="radios"></app-radio>
+  
+  </div>
+
+  <div class="col2">
+    <textarea
+    class="description"
+      rows="5"
+      cols="30"
+      pInputTextarea
+      [(ngModel)]="description"
+      placeholder="Description"
+    ></textarea>
+  </div>
+</div>
+
+  <app-toast [nameData]="name" 
+  [descriptionData]="description" 
+  [privatisationData]="visibilite"
+  [labelBouton]="bouton_label" 
+  [createOrga]="createOrga.bind(this)" 
+  class="creation"></app-toast>
+
+  <p-button [style]="{'margin':'1em', 'color':'#000'}"  label ="Retour" [link]="true" routerLink=".."></p-button>   
+</div>
+
+  
