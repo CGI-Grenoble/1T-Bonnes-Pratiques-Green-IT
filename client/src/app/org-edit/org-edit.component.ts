@@ -55,6 +55,7 @@ export class OrgEditComponent implements OnInit {
         choice
       )
       .subscribe((donnees) => {});
+      this.ngOnInit();
   }
 
 
