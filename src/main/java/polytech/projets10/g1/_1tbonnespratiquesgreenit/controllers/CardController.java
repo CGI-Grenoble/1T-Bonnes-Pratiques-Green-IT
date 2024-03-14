@@ -21,12 +21,21 @@ public class CardController {
         this.cardRepository = cardRepository;
     }
 
+    /**
+     * Get all cards
+     * @return a list of all the cards
+     */
     @GetMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public List<Card> getAllCards() {
         return cardRepository.findAll();
     }
 
+    /**
+     * Get one card
+     * @param id the card id
+     * @return one card
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Card> getCard(@PathVariable Long id) {
@@ -37,6 +46,13 @@ public class CardController {
 
     }
 
+    /**
+     * Add a card
+     * @param card the card to be added
+     * @return the card added
+     * @throws BadRequestException if card already has an ID
+     * @throws URISyntaxException
+     */
     @PostMapping("/")
     @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Card> createCard(@RequestBody Card card) throws BadRequestException, URISyntaxException {
