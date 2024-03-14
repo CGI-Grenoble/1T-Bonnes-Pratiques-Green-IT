@@ -14,14 +14,24 @@ export class OrgFindComponent {
 
   constructor(private http: HttpClient, private readonly keycloak: KeycloakService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
     const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
       this.orgas = donnees;
-      for(const orga of this.orgas) {
+      this.http.get('http://localhost:8081/api/userOrganisations/' + userData.id).subscribe((myOrgas: any) => {
+        for(const myorga of this.orgas) {
+          if(this.orgas.includes(myorga)) {
+            const index = this.orgas.indexOf(myorga)
+            this.orgas.splice(index, 1)
+          }
+        }
+        for(const orga of this.orgas) {
         this.http.get('http://localhost:8081/api/organisationUsers/' + orga.id).subscribe((users: any) => {
           orga.nmembers = users.length
         })
       }
+      })
+
     });
   }
 
