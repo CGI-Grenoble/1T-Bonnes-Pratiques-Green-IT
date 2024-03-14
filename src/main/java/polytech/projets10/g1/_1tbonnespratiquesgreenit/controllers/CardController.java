@@ -25,10 +25,16 @@ public class CardController {
      * Get all cards
      * @return a list of all the cards
      */
-    @GetMapping("")
+    @GetMapping("/")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public List<Card> getAllCards() {
         return cardRepository.findAll();
+    }
+
+    @GetMapping("/cardCount")
+    @PreAuthorize("hasAuthority('ROLE_user')")
+    public int getCardsCount() {
+        return cardRepository.findAll().size();
     }
 
     /**

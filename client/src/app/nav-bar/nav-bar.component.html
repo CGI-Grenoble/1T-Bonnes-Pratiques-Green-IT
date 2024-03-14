@@ -37,18 +37,6 @@
 
     <ng-template pTemplate="end">
       <div class="flex align-items-center gap-2">
-        <span class="pi pi-globe" [style]="{ color: 'white' }"></span>
-        <form [style]="{ color: 'white' }">
-          <p-dropdown
-            formControlName="selectedLanguage"
-            [options]="languages"
-            optionLabel="name"
-            [style]="{
-              'background-color': 'transparent',
-              'border-color': 'transparent'
-            }"
-          ></p-dropdown>
-        </form>
 
         <span class="font-bold text-bluegray-50" icon="pi pi-user">{{
           this.userName

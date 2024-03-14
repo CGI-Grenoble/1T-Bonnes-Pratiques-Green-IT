@@ -24,7 +24,7 @@ const routes: Routes = [
         // children: [{
           path: 'detail/:id', // child route path
           component: OrgDetailComponent, // Replace OrgDetailComponent with OrgComponent
-          
+
         },
       {
         path: '**',
@@ -69,10 +69,14 @@ const routes: Routes = [
     { path: 'org/edit',
       component: OrgComponent
     },
+    {
+      path: 'org/find',
+      component: OrgComponent
+    },
     { path: 'create',
       component: JoinComponent,
       children: [
-        
+
       ]
     },
     {
@@ -92,7 +96,7 @@ const routes: Routes = [
       path: 'regles',
       component: ReglesComponent
     }
-  
+
 ];
 
 @NgModule({

@@ -5,9 +5,9 @@
     </div>
     <div class="" id="members" [style]="">
         <h3>Membres</h3>
-        
+
         <!-- listes des membres dans tableau -->
-        
+
         <div class="card">
             <p-dataView #dv [value]="members" [loading]="loading">
               <ng-template pTemplate="list" let-products>
@@ -39,11 +39,10 @@
               </ng-template>
             </p-dataView>
           </div>
-          
+
 
     </div>
 </div>
 <div id="jouer">
     <p-button [style]="{'text-align':'center'}" icon ="pi pi-desktop" label ="Jouer" [link]="true" ></p-button>
 </div>
-

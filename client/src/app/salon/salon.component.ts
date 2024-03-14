@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-salon',
   templateUrl: './salon.component.html',
-  styleUrl: './salon.component.scss'
+  styleUrl: './salon.component.scss',
 })
 export class SalonComponent {
 
