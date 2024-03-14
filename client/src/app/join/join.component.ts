@@ -34,11 +34,11 @@ export class JoinComponent {
   }
 
   async createGame (orga:any){
-   
-    const rep = this.http.post('http://localhost:8081/api/games', {organisation: orga}).subscribe((donnees) => {
-      this.game = donnees;
-    });
-    this.link = "game/" + this.game.id;
+    console.log(orga)
+    // const rep = this.http.post('http://localhost:8081/api/games', {'organisation': orga}).subscribe((donnees) => {
+    //   this.game = donnees;
+    // });
+    // this.link = "game/" + this.game.id;
   }
 
 

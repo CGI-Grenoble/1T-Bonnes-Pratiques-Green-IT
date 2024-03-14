@@ -88,7 +88,7 @@ public class GameController {
      * @return the game created
      * @throws URISyntaxException
      */
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Organisation organisation) throws URISyntaxException {
         Game game = new Game();
