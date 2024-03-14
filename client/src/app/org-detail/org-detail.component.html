@@ -1,8 +1,8 @@
 <div *ngIf="show" id="detail" class=" flex ">
     <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.25rem'}">
-        <p-card header={{orga.name}} subheader="XX membres" [style]="{ width: '600px', 'height': '377px' }">
+        <p-card header={{orga.name}}  [style]="{ width: '600px', 'height': '377px' }">
             <ng-template pTemplate="content">
-                <h3 *ngIf="orga.is_public">Cette organisation est public</h3>
+                <h3 *ngIf="orga.is_public">Cette organisation est publique</h3>
                 <h3 *ngIf="!orga.is_public">Cette organisation est privée</h3>
                 <h3 [style]="{'margin-top' : '2.5rem'}">Description</h3>
                 <p>{{orga.description}}</p>
