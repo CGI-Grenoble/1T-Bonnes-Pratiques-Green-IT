@@ -20,12 +20,6 @@ export class OrgAccueilComponent implements OnInit{
     console.log('book in ChildComponent:', this.orga);
     this.newOrgaEvent.emit(this.orga);
   }
-  
-  test(){
-    const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
-      this.orgas = donnees;
-    });
-  }
 
   ngOnInit(): void {
     const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {

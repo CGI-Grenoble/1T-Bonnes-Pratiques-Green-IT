@@ -13,7 +13,7 @@ export class ToastComponent {
   @Input('descriptionData') public description!: string;
   @Input('privatisationData') public visibilite!: boolean;
   @Input('labelBouton') public label!: string;
-  @Input('createOrga') submitFunction: Function | undefined;
+  @Input('onClick') submitFunction: Function | undefined;
 
   constructor(private messageService: MessageService) {}
 

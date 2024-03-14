@@ -1,0 +1,9 @@
+.orgas{
+    height: 65vh;
+    width: 60vw;
+    margin: 3vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: auto;
+    
+}
