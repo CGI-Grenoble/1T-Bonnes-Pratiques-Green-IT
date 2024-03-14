@@ -34,7 +34,7 @@ public class Game {
     /**
      * The organisation hosting the game
      */
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "organisation_id", referencedColumnName = "id", nullable = false)
     private Organisation organisation;
 
