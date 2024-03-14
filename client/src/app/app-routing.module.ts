@@ -24,7 +24,7 @@ const routes: Routes = [
         // children: [{
           path: 'detail/:id', // child route path
           component: OrgDetailComponent, // Replace OrgDetailComponent with OrgComponent
-          
+
         },
       {
         path: '**',
@@ -50,7 +50,11 @@ const routes: Routes = [
       component: OrgComponent, // Replace OrgDetailComponent with OrgComponent
       children: [
         // {path: 'edit',
-        // component : EditOrgComponent,}
+        // componen<p-card [header]="orga.name" [style]="{ width: '305px'}">
+      <ng-template pTemplate="footer">
+        <p-button icon="pi pi-add" [link]="true" [style]="{'color':'#FF978A'}"></p-button>
+      </ng-template>
+    </p-card>t : EditOrgComponent,}
       ],
       data: { roles: ['user'] },
     }, */
@@ -69,10 +73,14 @@ const routes: Routes = [
     { path: 'org/edit',
       component: OrgComponent
     },
+    {
+      path: 'org/find',
+      component: OrgComponent
+    },
     { path: 'join',
       component: JoinComponent,
       children: [
-        
+
       ]
     },
     {
@@ -92,7 +100,7 @@ const routes: Routes = [
       path: 'regles',
       component: ReglesComponent
     }
-  
+
 ];
 
 @NgModule({
