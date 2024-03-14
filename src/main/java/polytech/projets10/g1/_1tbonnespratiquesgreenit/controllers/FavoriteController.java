@@ -75,7 +75,7 @@ public class FavoriteController {
      * @return the user favorites
      */
     @GetMapping("/forUser/{userId}")
-    public List<Favorite> getFavoritesForUser(@PathVariable Long userId) {
+    public List<Favorite> getFavoritesForUser(@PathVariable String userId) {
         return favoriteRepository.findByUser(userId);
     }
 
