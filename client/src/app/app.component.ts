@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     this.primengConfig.ripple = true;
     let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/userOrganisations/remove/' + userData.id, "michelin").subscribe(res => console.log(res))
-    // this.httpClient.get<{ message: string }>('http://localhost:8081/api/userOrganisations/s' + userData.id, {}).subscribe(res => console.log(res))
+    // this.httpClient.get<{ message: string }>('http://localhost:8081/api/userOrganisations/' + userData.id, {}).subscribe(res => console.log(res))
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/organisationUsers/michelin', {}).subscribe(res => console.log(res))
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/games/1/join', userData.id).subscribe(res => console.log(res))
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/games', {}).subscribe(res => console.log(res))
@@ -29,8 +29,10 @@ export class AppComponent implements OnInit {
     // this.httpClient.get<{ message: string }>('http://localhost:8081/api/orgaJoinRequests', {}).subscribe(res => console.log(res))
     // this.httpClient.post<{ message: string }>('http://localhost:8081/api/orgaJoinRequests/53/decide', "decline").subscribe(res => console.log(res))
     this.httpClient.get<{ message: string }>('http://localhost:8081/api/organisations/0', {}).subscribe(
-      res => {
-            this.httpClient.post<{message: string}>('http://localhost:8081/api/games/', res).subscribe(resres => console.log(resres))
+      (res: any) => {
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH")
+        console.log(res)
+        this.httpClient.post<{ message: string }>('http://localhost:8081/api/games', res).subscribe(res => console.log(res))
       })
   }
 }

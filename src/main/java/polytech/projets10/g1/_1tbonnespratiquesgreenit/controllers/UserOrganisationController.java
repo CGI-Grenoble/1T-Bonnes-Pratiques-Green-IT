@@ -46,6 +46,9 @@ public class UserOrganisationController {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
+
             List<Organisation> res = new ArrayList<>();
 
             for(String orgId: existingAttributes.get("organisation")) {
@@ -73,6 +76,9 @@ public class UserOrganisationController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userOrganisations = existingAttributes.get("organisation");
             if (userOrganisations == null)
@@ -103,6 +109,9 @@ public class UserOrganisationController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userOrganisations = existingAttributes.get("organisation");
 
