@@ -1,0 +1,28 @@
+<div id="cards" class="orgas">
+  <div *ngFor="let orga of orgas">
+    <div class="card flex justify-content-center" [style]="{'text-align': 'center', 'margin': '1.5rem'}">
+      <p-card [header]="orga.name" [subheader]="orga.nmembers + ' membre(s)'" [style]="{ width: '305px'}">
+        <p>
+          {{ orga.description }}
+        </p>
+        <ng-template pTemplate="footer">
+          <p-button icon="pi pi-user-plus" [link]="true" [style]="{'color':'#FF978A'}" size="large"
+                    [pTooltip]="tooltipContent" tooltipPosition="bottom" (click)="demandeRejoindre(orga)"></p-button>
+          <ng-template #tooltipContent>
+            <span>Demander à rejoindre</span>
+          </ng-template>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>
+
+<p-button
+  [style]="{
+    color: '#650A21'
+  }"
+  icon="pi pi-arrow-left"
+  label="Retour vers mes orgas"
+  [link]="true"
+  routerLink="/org"
+></p-button>

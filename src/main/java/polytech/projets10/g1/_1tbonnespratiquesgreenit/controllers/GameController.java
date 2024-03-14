@@ -88,7 +88,7 @@ public class GameController {
      * @return the game created
      * @throws URISyntaxException
      */
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Organisation organisation) throws URISyntaxException {
         Game game = new Game();
@@ -97,6 +97,24 @@ public class GameController {
         game.setOrganisation(organisation);
         var result = gameRepository.save(game);
         return ResponseEntity.created(new URI("/api/games/" + result.getId())).body(result);
+    }
+
+    @GetMapping("/{gameId}/users")
+    @PreAuthorize("hasAuthority('ROLE_user')")
+    public List<UserInfo> getUsersInGame(@PathVariable String gameId) {
+        try {
+            List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("game:" + gameId);
+
+            List<UserInfo> res = new ArrayList<>();
+
+            for (var user : users) {
+                res.add(new UserInfo(user.getId(), user.getFirstName(), user.getLastName()));
+            }
+
+            return res;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }
     }
 
     /**
@@ -124,6 +142,10 @@ public class GameController {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
+
             List<String> userGames = existingAttributes.get("game");
 
             if (userGames == null) userGames = new ArrayList<>();
@@ -137,6 +159,24 @@ public class GameController {
             return ResponseEntity.ok().build();
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cet utilisateur n'existe pas: " + userId, e);
+        }
+    }
+
+    @GetMapping("/{gameId}/users")
+    @PreAuthorize("hasAuthority('ROLE_user')")
+    public List<UserInfo> getUsersInGame(@PathVariable String gameId) {
+        try {
+            List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("game:" + gameId);
+
+            List<UserInfo> res = new ArrayList<>();
+
+            for (var user : users) {
+                res.add(new UserInfo(user.getId(), user.getFirstName(), user.getLastName()));
+            }
+
+            return res;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
@@ -157,6 +197,9 @@ public class GameController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userGames = existingAttributes.get("game");
 

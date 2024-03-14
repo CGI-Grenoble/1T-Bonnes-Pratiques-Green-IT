@@ -34,10 +34,10 @@
   [descriptionData]="description" 
   [privatisationData]="visibilite"
   [labelBouton]="bouton_label" 
-  [createOrga]="createOrga.bind(this)" 
+  [onClick]="createOrga.bind(this)" 
   class="creation"></app-toast>
 
-  <p-button [style]="{'margin':'1em', 'color':'#000'}"  label ="Retour" [link]="true" routerLink=".."></p-button>   
+  <p-button [style]="{'margin':'1em', 'color':'#000'}"  label ="Retour" [link]="true" routerLink="/org"></p-button>   
 </div>
 
   

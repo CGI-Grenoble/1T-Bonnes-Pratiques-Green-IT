@@ -1,17 +1,48 @@
 <div class="flex" [style]="{'text-align':'center', 'justify-content': 'space-around', 'margin-top': '1rem', 'align-items': 'center'}">
-    <div class="card justify-content-center" id="link" [style]="">
+    <div class="card justify-content-center" id="link" [style]="{'width': '23vw'}">
         <h3>Lien</h3>
-        <input id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="value" [style]="{'margin-top': '0.5rem'}" />
+        <input id="disabled-input" type="text" pInputText [disabled]="true" [ngModel]="lien" [style]="{'margin-top': '0.5rem', 'width': '100%'}" />
     </div>
     <div class="" id="members" [style]="">
         <h3>Membres</h3>
-        
+
         <!-- listes des membres dans tableau -->
-        
-        <app-members class="liste"> </app-members>
+
+        <div class="card">
+            <p-dataView #dv [value]="members" [loading]="loading">
+              <ng-template pTemplate="list" let-products>
+                <div class="grid grid-nogutter">
+                  <div class="col-12" *ngFor="let item of members; let first = first">
+                    <div
+                      class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
+                      [ngClass]="{ 'border-top-1 surface-border': !first }"
+                    >
+                      <div
+                        class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+                      >
+                        <div
+                          class="flex flex-column align-items-center sm:align-items-start gap-3"
+                        >
+                          <div>{{ item.name }}</div>
+                          <div class="flex align-items-center gap-3">
+                            <span class="flex align-items-center gap-2"> </span>
+                          </div>
+                        </div>
+                        <div
+                          class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-dataView>
+          </div>
+
+
     </div>
 </div>
 <div id="jouer">
     <p-button [style]="{'text-align':'center'}" icon ="pi pi-desktop" label ="Jouer" [link]="true" ></p-button>
 </div>
-

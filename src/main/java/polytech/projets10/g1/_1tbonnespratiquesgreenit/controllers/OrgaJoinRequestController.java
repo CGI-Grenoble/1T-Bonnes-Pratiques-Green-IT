@@ -95,9 +95,10 @@ public class OrgaJoinRequestController {
     @PreAuthorize("hasAuthority('ROLE_org-admin')")
     public List<OrgaJoinRequest> getJoinRequestsForOrga(@PathVariable Long orgaId) {
         List<OrgaJoinRequest> requests = orgaJoinRequestRepository.findByOrga(orgaId);
-
         for (var request : requests) {
             UserRepresentation user = keycloak.realm(this.realm).users().get(request.getUser_id()).toRepresentation();
+            System.out.println(user.getFirstName());
+            System.out.println(request.getUser_id());
             UserInfo info = new UserInfo(request.getUser_id(), user.getFirstName(), user.getLastName());
             request.setUserInfo(info);
         }
@@ -129,6 +130,10 @@ public class OrgaJoinRequestController {
                 UserRepresentation userRepresentation = user.toRepresentation();
                 Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 
+                if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
+
+
                 List<String> userOrganisations = existingAttributes.get("organisation");
 
                 if (userOrganisations == null) userOrganisations = new ArrayList<>();
@@ -155,7 +160,7 @@ public class OrgaJoinRequestController {
      * @throws BadRequestException the request already has an ID
      * @throws URISyntaxException
      */
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<OrgaJoinRequest> createOrgaJoinRequest(@RequestBody OrgaJoinRequest joinRequest) throws BadRequestException, URISyntaxException {
         if (joinRequest.getId() != null)
@@ -165,6 +170,9 @@ public class OrgaJoinRequestController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userOrganisations = existingAttributes.get("organisation");
 
