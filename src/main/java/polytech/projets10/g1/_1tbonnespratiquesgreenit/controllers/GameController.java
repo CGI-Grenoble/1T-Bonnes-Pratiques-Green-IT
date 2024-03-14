@@ -88,7 +88,7 @@ public class GameController {
      * @return the game created
      * @throws URISyntaxException
      */
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<Game> createGame(@RequestBody Organisation organisation) throws URISyntaxException {
         Game game = new Game();
@@ -124,6 +124,10 @@ public class GameController {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
+
             List<String> userGames = existingAttributes.get("game");
 
             if (userGames == null) userGames = new ArrayList<>();
@@ -157,6 +161,9 @@ public class GameController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userGames = existingAttributes.get("game");
 

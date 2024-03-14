@@ -45,7 +45,7 @@ public class OrganisationController {
     public ResponseEntity<Organisation> getOrganisation(@PathVariable Long id) {
         var organisation = organisationRepository.findById(id);
         if (organisation.isPresent())
-            return new ResponseEntity<>(organisation.get(), HttpStatus.OK);
+            return ResponseEntity.ok(organisation.get());
         return new ResponseEntity<>((Organisation) null, HttpStatus.NOT_FOUND);
     }
 
