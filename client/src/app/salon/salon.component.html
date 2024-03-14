@@ -1,17 +1,36 @@
-<div class="flex" [style]="{'text-align':'center', 'justify-content': 'space-around', 'margin-top': '1rem', 'align-items': 'center'}">
-    <div class="card justify-content-center" id="link" [style]="">
-        <h3>Lien</h3>
-        <input id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="value" [style]="{'margin-top': '0.5rem'}" />
-    </div>
-    <div class="" id="members" [style]="">
-        <h3>Membres</h3>
-        
-        <!-- listes des membres dans tableau -->
-        
-        <app-members class="liste"> </app-members>
-    </div>
+<div
+  class="flex"
+  [style]="{
+    'text-align': 'center',
+    'justify-content': 'space-around',
+    'margin-top': '1rem',
+    'align-items': 'center'
+  }"
+>
+  <div class="card justify-content-center" id="link" [style]="">
+    <h3>Lien</h3>
+    <input
+      id="disabled-input"
+      type="text"
+      pInputText
+      [disabled]="true"
+      [(ngModel)]="value"
+      [style]="{ 'margin-top': '0.5rem' }"
+    />
+  </div>
+  <div class="" id="members" [style]="">
+    <h3>Membres</h3>
+
+    <!-- listes des membres dans tableau -->
+
+    <app-members class="liste"> </app-members>
+  </div>
 </div>
 <div id="jouer">
-    <p-button [style]="{'text-align':'center'}" icon ="pi pi-desktop" label ="Jouer" [link]="true" ></p-button>
+  <p-button
+    [style]="{ 'text-align': 'center' }"
+    icon="pi pi-desktop"
+    label="Jouer"
+    [link]="true"
+  ></p-button>
 </div>
-
