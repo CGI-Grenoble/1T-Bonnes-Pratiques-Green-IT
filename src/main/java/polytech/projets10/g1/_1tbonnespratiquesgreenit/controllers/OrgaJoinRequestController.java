@@ -159,7 +159,7 @@ public class OrgaJoinRequestController {
      * @throws BadRequestException the request already has an ID
      * @throws URISyntaxException
      */
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ROLE_user')")
     public ResponseEntity<OrgaJoinRequest> createOrgaJoinRequest(@RequestBody OrgaJoinRequest joinRequest) throws BadRequestException, URISyntaxException {
         if (joinRequest.getId() != null)

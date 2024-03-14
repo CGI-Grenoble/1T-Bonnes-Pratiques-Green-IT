@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {KeycloakService} from "keycloak-angular";
+import {KeycloakCustomProfile} from "../keycloak-user";
 
 @Component({
   selector: 'app-org-accueil',
@@ -10,25 +12,20 @@ export class OrgAccueilComponent implements OnInit{
 
   @Output() newOrgaEvent = new EventEmitter<string>();
 
-  
+
   orgas!: any;
   orga !: any;
-  
-  constructor(private http: HttpClient) { }
-  
+
+  constructor(private http: HttpClient, private readonly keycloak: KeycloakService) { }
+
   onSendOrga() {
     console.log('book in ChildComponent:', this.orga);
     this.newOrgaEvent.emit(this.orga);
   }
-  
-  test(){
-    const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
-      this.orgas = donnees;
-    });
-  }
 
-  ngOnInit(): void {
-    const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
+  async ngOnInit() {
+    let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile
+    const rep = this.http.get('http://localhost:8081/api/userOrganisations/' + userData.id).subscribe((donnees) => {
       this.orgas = donnees;
     });
   }

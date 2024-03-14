@@ -144,6 +144,24 @@ public class GameController {
         }
     }
 
+    @GetMapping("/{gameId}/users")
+    @PreAuthorize("hasAuthority('ROLE_user')")
+    public List<UserInfo> getUsersInGame(@PathVariable String gameId) {
+        try {
+            List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("game:" + gameId);
+
+            List<UserInfo> res = new ArrayList<>();
+
+            for (var user : users) {
+                res.add(new UserInfo(user.getId(), user.getFirstName(), user.getLastName()));
+            }
+
+            return res;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }
+    }
+
     /**
      * A user leaves a game
      * @param gameId the game id

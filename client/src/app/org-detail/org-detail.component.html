@@ -1,5 +1,5 @@
 <div *ngIf="show" id="detail" class=" flex ">
-    <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.25rem'}">    
+    <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.25rem'}">
         <p-card header={{orga.name}} subheader="XX membres" [style]="{ width: '600px', 'height': '377px' }">
             <ng-template pTemplate="content">
                 <h3 *ngIf="orga.is_public">Cette organisation est public</h3>
@@ -8,10 +8,9 @@
                 <p>{{orga.description}}</p>
             </ng-template>
             <ng-template pTemplate="footer" >
-                <p [style]="{'margin-top': '1rem'}">administarteur: pseudo_admin, joignable à l'adresse mail exemple[at]gmail.com</p>
                 <p-button icon="pi pi-arrow-left" [link]="true" label="retour" [style]="{'margin-top': '1rem', 'display':'block'}" routerLink=".."></p-button>
             </ng-template>
         </p-card>
-        
+
     </div>
 </div>
