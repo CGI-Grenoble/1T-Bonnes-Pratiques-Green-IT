@@ -31,8 +31,7 @@
           [style]="{ color: '#000000', margin: '5vh' }"
           label="Retour"
           [link]="true"
-          routerLink=".."
-         
+          (click)="demandeRejoindre()"
         ></p-button>
 
         <!-- routerLink=".." -->
@@ -59,6 +58,11 @@
         [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
         label="Ajouter des membres"
         (click)="onClick(true)"
+      ></p-button>
+      <p-button
+        [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
+        label="list"
+        (click)="printListDemandes()"
       >
       </p-button>
     </div>

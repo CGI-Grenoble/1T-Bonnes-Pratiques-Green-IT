@@ -29,13 +29,7 @@ export class OrgEditComponent implements OnInit {
       .subscribe((donnees) => {
         this.orgaData = donnees;
         console.log(this.orgaData);
-        const repMemberWaiting = this.http
-          .get('http://localhost:8081/api/orgaJoinRequests/forOrga/' + this.orgaData.id)
-          .subscribe((donnees) => {
-            this.memberWaitingData = donnees;
-            console.log(this.memberWaitingData);
-            
-          });
+       
       });
   }
 
@@ -53,7 +47,7 @@ export class OrgEditComponent implements OnInit {
 
   demandeRejoindre(){
     const body = {
-      "id":0,
+      
       "organisation":this.orgaData,
       "user_id":'fb9819f8-4297-4a4a-8aca-9f78f2d13e38'
     }
@@ -62,6 +56,16 @@ export class OrgEditComponent implements OnInit {
     .post('http://localhost:8081/api/orgaJoinRequests',body )
     .subscribe((donnees) => {
       console.log(donnees);
+    });
+  }
+
+  printListDemandes( ){
+    const repMemberWaiting = this.http
+    .get('http://localhost:8081/api/orgaJoinRequests/forOrga/' + this.orgaData.id)
+    .subscribe((donnees) => {
+      this.memberWaitingData = donnees;
+      console.log(this.memberWaitingData);
+      
     });
   }
 }
