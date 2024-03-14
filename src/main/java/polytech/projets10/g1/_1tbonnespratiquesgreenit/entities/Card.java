@@ -46,31 +46,31 @@ public class Card {
      * True if practice allows network gain
      */
     @Column(name = "network_gain")
-    private boolean network_gain;
+    private Boolean network_gain;
 
     /**
      * True if practice allows memory gain
      */
     @Column(name = "memory_gain")
-    private boolean memory_gain;
+    private Boolean memory_gain;
 
     /**
      * True if practice allows CPU gain
      */
     @Column(name = "CPU_gain")
-    private boolean CPU_gain;
+    private Boolean CPU_gain;
 
     /**
      * True if practice allows storage gain
      */
     @Column(name = "storage_gain")
-    private boolean storage_gain;
+    private Boolean storage_gain;
 
     /**
      * Difficulty of the practice
      */
     @Column(name = "difficulty")
-    private int difficulty;
+    private Integer difficulty;
 
     public Long getId() {
         return id;
@@ -120,43 +120,43 @@ public class Card {
         this.actor = actor;
     }
 
-    public boolean isNetwork_gain() {
+    public Boolean isNetwork_gain() {
         return network_gain;
     }
 
-    public void setNetwork_gain(boolean network_gain) {
+    public void setNetwork_gain(Boolean network_gain) {
         this.network_gain = network_gain;
     }
 
-    public boolean isMemory_gain() {
+    public Boolean isMemory_gain() {
         return memory_gain;
     }
 
-    public void setMemory_gain(boolean memory_gain) {
+    public void setMemory_gain(Boolean memory_gain) {
         this.memory_gain = memory_gain;
     }
 
-    public boolean isCPU_gain() {
+    public Boolean isCPU_gain() {
         return CPU_gain;
     }
 
-    public void setCPU_gain(boolean CPU_gain) {
+    public void setCPU_gain(Boolean CPU_gain) {
         this.CPU_gain = CPU_gain;
     }
 
-    public boolean isStorage_gain() {
+    public Boolean isStorage_gain() {
         return storage_gain;
     }
 
-    public void setStorage_gain(boolean storage_gain) {
+    public void setStorage_gain(Boolean storage_gain) {
         this.storage_gain = storage_gain;
     }
 
-    public int getDifficulty() {
+    public Integer getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(Integer difficulty) {
         this.difficulty = difficulty;
     }
 }
