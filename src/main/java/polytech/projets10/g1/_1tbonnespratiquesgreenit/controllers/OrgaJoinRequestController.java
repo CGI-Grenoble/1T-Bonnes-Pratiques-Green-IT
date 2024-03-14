@@ -129,6 +129,10 @@ public class OrgaJoinRequestController {
                 UserRepresentation userRepresentation = user.toRepresentation();
                 Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
 
+                if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
+
+
                 List<String> userOrganisations = existingAttributes.get("organisation");
 
                 if (userOrganisations == null) userOrganisations = new ArrayList<>();
@@ -165,6 +169,9 @@ public class OrgaJoinRequestController {
         try {
             UserRepresentation userRepresentation = user.toRepresentation();
             Map<String, List<String>> existingAttributes = userRepresentation.getAttributes();
+
+            if(existingAttributes.isEmpty())
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User has no attributes");
 
             List<String> userOrganisations = existingAttributes.get("organisation");
 

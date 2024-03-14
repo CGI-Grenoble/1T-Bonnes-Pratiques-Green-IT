@@ -1,12 +1,23 @@
-<div id="cards" class=" grid " [style]= "{ 'display': 'flex', ' text-align': 'center'} ">
-    <div *ngFor="let orga of orgas">
-        <div class="card flex justify-content-center" [style] = "{'text-align': 'center', 'margin': '1.5rem'}">   
-            <p-card [header]="orga"  [style]="{ width: '305px'}">
-                
-                <ng-template *ngIf="!false" pTemplate="footer" >
-                    <p-button [link]="true" label="Lancer une partie" (click)="createGame(orga)" routerLink="{{link}}"></p-button>
-                </ng-template>
-            </p-card>
-        </div>
+<div
+  id="cards"
+  class="grid"
+  [style]="{ display: 'flex', ' text-align': 'center' }"
+>
+  <div *ngFor="let orga of orgas">
+    <div
+      class="card flex justify-content-center"
+      [style]="{ 'text-align': 'center', margin: '1.5rem' }"
+    >
+      <p-card [header]="orga" [style]="{ width: '305px' }">
+        <ng-template *ngIf="!false" pTemplate="footer">
+          <p-button
+            [link]="true"
+            label="Lancer une partie"
+            (click)="createGame(orga)"
+            routerLink="{{ link }}"
+          ></p-button>
+        </ng-template>
+      </p-card>
     </div>
+  </div>
 </div>

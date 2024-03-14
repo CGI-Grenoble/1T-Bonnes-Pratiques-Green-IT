@@ -28,14 +28,14 @@ public class OrganisationUsersController {
 
     /**
      * Get all users for an organisation
-     * @param orgaName the organisation name
+     * @param orgId the organisation ID
      * @return a list of user information who are in the organisation
      */
-    @GetMapping("/{orgaName}")
+    @GetMapping("/{orgId}")
     @PreAuthorize("hasAuthority('ROLE_user')")
-    List<UserInfo> getUserOrganisations(@PathVariable String orgaName) {
+    List<UserInfo> getUserOrganisations(@PathVariable String orgId) {
         try {
-            List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("organisation:" + orgaName);
+            List<UserRepresentation> users = keycloak.realm(realm).users().searchByAttributes("organisation:" + orgId);
 
             List<UserInfo> res = new ArrayList<>();
 
