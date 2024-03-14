@@ -28,43 +28,40 @@
 
       <div class="boutons">
         <p-button
-          [style]="{ color: '#000000', margin: '5vh' }"
+          [style]="{ color: '#000000',margin:'2h','margin-right': '10vw'}"
           label="Retour"
           [link]="true"
-          (click)="demandeRejoindre()"
+          routerLink=".."
         ></p-button>
-
-        <!-- routerLink=".." -->
-        <!-- (click)="demandeRejoindre()" -->
 
         <app-toast
           [nameData]="name"
           [descriptionData]="description"
           [privatisationData]="visibilite"
           [labelBouton]="bouton_label"
+          [onClick]="editOrga.bind(this)"
           class="creation"
         ></app-toast>
+
+        <!-- (click)="demandeRejoindre()" pour les tests uniquement-->
       </div>
-    </div>
 
-    <div class="col2">
-      <h3>En attente</h3>
-
-      <!-- listes des membres dans tableau -->
-
-      <app-members class="liste"> </app-members>
-
-      <p-button
-        [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
-        label="Ajouter des membres"
-        (click)="onClick(true)"
-      ></p-button>
-      <p-button
+      <!-- <p-button
         [style]="{ background: '#FF978A', border: 'none', width: '50%' }"
         label="list"
         (click)="printListDemandes()"
       >
-      </p-button>
+      </p-button> -->
+    </div>
+
+    <div class="col2">
+      <h3>En attente</h3>
+      <app-members
+        class="liste"
+        [memberWaitingData]="memberWaitingData"
+        [decide]="decide"
+      >
+      </app-members>
     </div>
   </div>
 </div>

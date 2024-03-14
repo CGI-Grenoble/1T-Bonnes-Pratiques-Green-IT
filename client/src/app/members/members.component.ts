@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface IMember {
-  name: string;
-  id: number;
-}
+import { IWaintingMember } from '../org-edit/org-edit.component';
 
 @Component({
   selector: 'app-members',
@@ -12,24 +8,24 @@ interface IMember {
   styleUrl: './members.component.scss',
 })
 export class MembersComponent {
+  @Input('memberWaitingData') public memberWaitingData: IWaintingMember[] = [];
+  @Input('decide') decide: Function | undefined;
 
-  constructor (private http: HttpClient){  }
+  constructor(private http: HttpClient) {}
 
-  getMembersByOrgaId( id :number) {
-    
-  }
-  public members: IMember[] = [
-    { name: 'Aziz', id: 0 },
-    { name: 'Eloi', id: 1 },
-    { name: 'Alix', id: 2 },
-  ];
+  loading: boolean = true;
 
-  suppr() : void {
-    console.log("deleted");
+  sendResponse(accept: boolean, requestID: string){
+    if (this.decide) {
+      this.decide(accept, requestID);
+    }
   }
 
   ngOnInit() {
-    //appeler requete pour recuperer les membres d'une orga
-    //  this.productService.getProducts().then((data) => (this.products = data.slice(0, 5)));
+    console.log(this.memberWaitingData);
+    setTimeout(() => {
+      // Fetch data here...
+      this.loading = false;
+    }, 1000);
   }
 }
