@@ -4,7 +4,7 @@
         <app-org-bouton routerLink="/"></app-org-bouton>   
     </div>
 
-    <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1rem', 'margin-bottom': '1rem', 'display': 'grid', 'align-items': 'center' ,'overflow-y': 'auto', 'width':'60vw'}">
+    <div [style]="{'background-color': 'white','text-align': 'center', 'border-radius': '6px', 'margin-top': '1rem', 'margin-bottom': '1rem', 'display': 'grid', 'align-items': 'center' , 'width':'60vw'}">
         <h2 [style]= "{'margin-top': '0.5rem'}">Mes Organisations</h2>
         <app-org-accueil *ngIf="router.url === '/org'"></app-org-accueil>
         <app-org-detail *ngIf="router.url.startsWith('/org/detail')" [show]="true"></app-org-detail> 
