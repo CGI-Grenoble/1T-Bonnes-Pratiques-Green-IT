@@ -10,14 +10,14 @@
       <div class="card flex justify-content-center" [style]="{'text-align': 'center', 'margin': '1.5rem'}">
         <p-card header="À appliquer en priorité" [style]="{ width: '305px', 'height': '160px'}">
           <p>{{ BP_to_do.length }} cartes</p>
-          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"
+          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem', 'color':'#FF978A'}"
                     [routerLink]="'a-appliquer-en-priorite'"></p-button>
         </p-card>
       </div>
       <div class="card flex justify-content-center" [style]="{'text-align': 'center', 'margin': '1.5rem'}">
         <p-card header="Déjà appliquées" [style]="{ width: '305px', 'height': '160px'}">
           <p>{{ BP_done.length }} cartes</p>
-          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem', 'color':'#FF978A'}"></p-button>
         </p-card>
       </div>
     </div>
@@ -25,13 +25,13 @@
       <div class="card flex justify-content-center" [style]="{'text-align': 'center', 'margin': '1.5rem'}">
         <p-card header="Non applicables" [style]="{ width: '305px', 'height': '160px'}">
           <p>{{ BP_undoable.length }} cartes</p>
-          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem', 'color':'#FF978A'}"></p-button>
         </p-card>
       </div>
       <div class="card flex justify-content-center" [style]="{'text-align': 'center', 'margin': '1.5rem'}">
         <p-card header="Non rencontrées" [style]="{ width: '305px', 'height': '160px'}">
           <p>{{ BP_unseen_count }} cartes</p>
-          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem'}"></p-button>
+          <p-button icon="pi pi-eye" [link]="true" [style]="{'margin-top': '0.75rem', 'color':'#FF978A'}"></p-button>
         </p-card>
       </div>
     </div>
