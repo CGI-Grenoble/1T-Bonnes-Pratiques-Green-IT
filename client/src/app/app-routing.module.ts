@@ -69,14 +69,14 @@ const routes: Routes = [
     { path: 'org/edit',
       component: OrgComponent
     },
-    { path: 'join',
+    { path: 'create',
       component: JoinComponent,
       children: [
         
       ]
     },
     {
-      path: 'join/game/:id',
+      path: 'create/game/:id',
       component: SalonComponent
     },
     { path: '',

@@ -63,13 +63,13 @@ export class NavBarComponent implements OnInit{
       ]
 
       this.items = [
-        {
-          label: 'Rejoindre',
-          routerLink: '/join'
-      },
+      //   {
+      //     label: 'Rejoindre',
+      //     routerLink: '/join'
+      // },
       {
           label: 'Créer',
-          routerLink: '/join'
+          routerLink: '/create'
       }
       ]
 
