@@ -16,8 +16,8 @@ export class OrgFindComponent {
 
   async ngOnInit() {
     let userData = await this.keycloak.loadUserProfile() as KeycloakCustomProfile;
-    const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees) => {
-      this.orgas = donnees;
+    const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees: any) => {
+      this.orgas = donnees.filter((orga: any) => orga.is_public)
       this.http.get('http://localhost:8081/api/userOrganisations/' + userData.id).subscribe((myOrgas: any) => {
         for(const myorga of this.orgas) {
           if(this.orgas.includes(myorga)) {
@@ -31,7 +31,6 @@ export class OrgFindComponent {
         })
       }
       })
-
     });
   }
 
