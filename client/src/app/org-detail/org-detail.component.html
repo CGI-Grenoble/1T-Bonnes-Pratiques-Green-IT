@@ -8,9 +8,18 @@
                 <p>{{orga.description}}</p>
             </ng-template>
             <ng-template pTemplate="footer" >
-                <p-button icon="pi pi-arrow-left" [link]="true" label="retour" [style]="{'margin-top': '1rem', 'display':'block', color: '#650A21'}" routerLink=".."></p-button>
+                <p-button icon="pi pi-arrow-left" [link]="true" label="retour" [style]="{'margin-top': '1rem', 'display':'block', color: '#650A21'}" routerLink="/org"></p-button>
             </ng-template>
         </p-card>
-
     </div>
+
+  <div style="margin-top: 1.25rem; text-align: left !important;">
+    <h3>Membres</h3>
+    <ul style="margin-top: 1vh;">
+    <li *ngFor="let user of users">
+      {{user.firstName + ' ' + user.lastName}}
+    </li>
+  </ul>
+  </div>
+
 </div>
