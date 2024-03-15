@@ -19,7 +19,7 @@ export class OrgFindComponent {
     const rep = this.http.get('http://localhost:8081/api/organisations').subscribe((donnees: any) => {
       this.orgas = donnees.filter((orga: any) => orga.is_public)
       this.http.get('http://localhost:8081/api/userOrganisations/' + userData.id).subscribe((myOrgas: any) => {
-        for(const myorga of this.orgas) {
+        for(const myorga of myOrgas) {
           if(this.orgas.includes(myorga)) {
             const index = this.orgas.indexOf(myorga)
             this.orgas.splice(index, 1)

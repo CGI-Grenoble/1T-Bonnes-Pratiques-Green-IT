@@ -16,6 +16,7 @@ export class OrgDetailComponent {
   @Input() show!: boolean;
 
   orga !: any;
+  users!: any;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
@@ -23,9 +24,10 @@ export class OrgDetailComponent {
   async ngOnInit() {
       const rep = this.http.get('http://localhost:8081/api/organisations/'+ (this.route.snapshot.firstChild?.params['id'])).subscribe((donnees) => {
         this.orga = donnees;
-        console.log(this.orga);
-        console.log('http://localhost:8081/api/organisations/'+ (this.route.snapshot.firstChild?.params['id']))
       });
+      this.http.get('http://localhost:8081/api/organisationUsers/'+this.route.snapshot.firstChild?.params['id']).subscribe(users => {
+        this.users = users;
+      })
     /* const body = {
       name: "test",
       description: "clc",
@@ -37,9 +39,9 @@ export class OrgDetailComponent {
         console.log(donnees);
       }); */
   }
-  
 
-  
+
+
   /* constructor(private router: Router) { }
 
   onContinue() {

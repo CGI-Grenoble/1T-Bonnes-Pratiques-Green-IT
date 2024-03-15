@@ -1,57 +1,73 @@
-CREATE SEQUENCE IF NOT EXISTS card_seq START WITH 1 INCREMENT BY 50;
-
-CREATE SEQUENCE IF NOT EXISTS favorite_seq START WITH 1 INCREMENT BY 50;
-
-CREATE SEQUENCE IF NOT EXISTS game_seq START WITH 1 INCREMENT BY 50;
-
-CREATE SEQUENCE IF NOT EXISTS organisation_seq START WITH 1 INCREMENT BY 50;
-
-CREATE TABLE card
+create table public.card
 (
-    id               BIGINT       NOT NULL,
-    title            VARCHAR(255) NOT NULL,
-    value            INTEGER,
-    description      VARCHAR(1000),
-    actors           VARCHAR(255),
-    components       VARCHAR(255),
-    gain_type        VARCHAR(255),
-    difficulty       INTEGER,
-    logo             VARCHAR(255) NOT NULL,
-    background_image VARCHAR(255) NOT NULL,
-    subtitle         VARCHAR(255),
-    CONSTRAINT pk_card PRIMARY KEY (id)
+    id           bigint       not null
+        primary key,
+    title        varchar(255) not null,
+    description  varchar(1000),
+    difficulty   integer,
+    actor        varchar(255),
+    cpu_gain     boolean,
+    link         varchar(255),
+    memory_gain  boolean,
+    network_gain boolean,
+    storage_gain boolean,
+    type         varchar(255)
 );
 
-CREATE TABLE favorite
+alter table public.card
+    owner to postgres;
+
+create table public.favorite
 (
-    id       BIGINT                                NOT NULL,
-    user_id  VARCHAR(255)                          NOT NULL,
-    category VARCHAR(255) DEFAULT 'non rencontrée' NOT NULL,
-    CONSTRAINT pk_favorite PRIMARY KEY (id)
+    id       bigint                                                   not null
+        primary key,
+    user_id  varchar(255)                                             not null,
+    category varchar(255) default 'non rencontrée'::character varying not null,
+    card_id  bigint                                                   not null
+        constraint fk62a95lhsr67q2ck26u1y0km1f
+            references public.card
 );
 
-CREATE TABLE game
+alter table public.favorite
+    owner to postgres;
+
+create table public.organisation
 (
-    id              BIGINT                      NOT NULL,
-    date            TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    organisation_id BIGINT                      NOT NULL,
-    CONSTRAINT pk_game PRIMARY KEY (id)
+    id          bigint      not null
+        primary key,
+    description varchar(256),
+    is_public   boolean     not null,
+    name        varchar(50) not null
+        constraint uk_4cj3idr72jukvc49m5dgo9jmo
+            unique
 );
 
-CREATE TABLE organisation
+alter table public.organisation
+    owner to postgres;
+
+create table public.game
 (
-    id          BIGINT      NOT NULL,
-    name        VARCHAR(50) NOT NULL,
-    description VARCHAR(256),
-    is_public   BOOLEAN     NOT NULL,
-    CONSTRAINT pk_organisation PRIMARY KEY (id)
+    id              bigint                                                 not null
+        primary key,
+    date            timestamp(6)                                           not null,
+    organisation_id bigint                                                 not null
+        constraint fk1rfy9mbrf9v4qs2ttidkfo0rb
+            references public.organisation,
+    status          varchar(255) default 'WAITING_TO_S'::character varying not null
 );
 
-ALTER TABLE organisation
-    ADD CONSTRAINT uc_organisation_name UNIQUE (name);
+alter table public.game
+    owner to postgres;
 
-ALTER TABLE favorite
-    ADD CONSTRAINT FK_FAVORITE_ON_ID FOREIGN KEY (id) REFERENCES card (id);
+create table public.orga_join_request
+(
+    id              bigint       not null
+        primary key,
+    user_id         varchar(255) not null,
+    organisation_id bigint       not null
+        constraint fkqxhg3v4caetqs0anm8o3pfe92
+            references public.organisation
+);
 
-ALTER TABLE game
-    ADD CONSTRAINT FK_GAME_ON_ORGANISATION FOREIGN KEY (organisation_id) REFERENCES organisation (id);
+alter table public.orga_join_request
+    owner to postgres;
